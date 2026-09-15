@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Agile, Scrum &amp; Kanban — Exam Notes</title>
+<style>
+  :root{
+    --maroon:#7a1f2b;
+    --tan:#c9b79c;
+    --ink:#242021;
+    --paper:#fdfbf8;
+    --card:#ffffff;
+    --lecture-bg:#fbf3e7;
+    --lecture-border:#d9a441;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  header{
+    background:linear-gradient(120deg,var(--maroon),#5a151d);
+    color:#fff;
+    padding:2.5rem 2rem 2rem;
+  }
+  header h1{margin:0 0 .3rem;font-size:1.8rem;}
+  header p{margin:0;opacity:.9;font-size:.95rem;}
+  nav{
+    background:#efe6d8;
+    padding:.8rem 2rem;
+    position:sticky;
+    top:0;
+    z-index:10;
+    border-bottom:3px solid var(--maroon);
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  nav a{
+    color:var(--maroon);
+    text-decoration:none;
+    font-weight:600;
+    margin-right:1.2rem;
+    font-size:.9rem;
+  }
+  nav a:hover{text-decoration:underline;}
+  main{max-width:900px;margin:0 auto;padding:2rem;}
+  section{margin-bottom:2.8rem;}
+  h2{
+    color:var(--maroon);
+    border-bottom:3px solid var(--tan);
+    padding-bottom:.4rem;
+    font-size:1.4rem;
+  }
+  h3{color:#5a151d;font-size:1.1rem;margin-top:1.4rem;}
+  .card{
+    background:var(--card);
+    border:1px solid #e6ddcf;
+    border-radius:10px;
+    padding:1.2rem 1.4rem;
+    margin:1rem 0;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  ul{padding-left:1.3rem;}
+  li{margin-bottom:.35rem;}
+  ol{padding-left:1.3rem;}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.92rem;}
+  th,td{border:1px solid #ddd0ba;padding:.55rem .7rem;text-align:left;vertical-align:top;}
+  th{background:var(--tan);color:#3a2c1a;}
+  tr:nth-child(even) td{background:#faf6ef;}
+  code{background:#f0ece3;padding:.1rem .35rem;border-radius:4px;font-size:.9rem;}
+
+  .lecture{
+    background:var(--lecture-bg);
+    border-left:5px solid var(--lecture-border);
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .lecture .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#8a5a10;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .lecture .tag::before{content:"🎙 ";}
+  .qa{
+    background:#eef3f6;
+    border-left:5px solid #4d7ea8;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .qa .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2f5c80;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .qa .tag::before{content:"💬 ";}
+  .example{
+    background:#eef6ee;
+    border-left:5px solid #4d8a5c;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .example .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2c6b3a;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .example .tag::before{content:"🧮 ";}
+  .timestamp{color:#8a7a5e;font-size:.8rem;font-style:italic;}
+  footer{
+    text-align:center;
+    color:#8a7a5e;
+    font-size:.85rem;
+    padding:2rem 0;
+  }
+  .term{font-weight:700;color:var(--maroon);}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Secure Software Engineering I — Week 2 (cont.)</h1>
+  <p>Agile Model Deep Dive: Scrum, Kanban &amp; eXtreme Programming — Exam Notes, enriched with lecture recording insights</p>
+</header>
+
+<nav>
+  <a href="#agile-intro">Agile Intro</a>
+  <a href="#kanban">Kanban</a>
+  <a href="#scrum">Scrum Overview</a>
+  <a href="#backlog">Product/Sprint Backlog</a>
+  <a href="#meetings">Scrum Meetings</a>
+  <a href="#burndown">Burndown Chart</a>
+  <a href="#xp">Extreme Programming</a>
+  <a href="#summary">Summary</a>
+</nav>
+
+<main>
+
+<section id="agile-intro">
+<h2>1. Agile Model — Introduction</h2>
+<div class="card">
+<p><strong>Definition:</strong> Proposed in the late 1990s to shorten Waterfall-based product cycles and respond more nimbly to customer needs, solving problems as they come up.</p>
+<h3>Agile Manifesto values (vs. traditional approaches)</h3>
+<ul>
+  <li>Individuals &amp; interactions <strong>over</strong> processes and tools</li>
+  <li>Working software <strong>over</strong> comprehensive documentation</li>
+  <li>Customer collaboration <strong>over</strong> contract negotiation</li>
+  <li>Responding to change <strong>over</strong> following a plan</li>
+</ul>
+<p>Regular meetings between the team and the customer let changes be reflected immediately. A 2018 industry survey found <strong>97%</strong> of respondents' organizations report practicing some Agile method.</p>
+
+<h3>Sub-models under Agile</h3>
+<ul>
+  <li><strong>Scrum</strong> — 3 roles (Scrum Master, Product Owner, Scrum Team) work in sprints of ≤4 weeks.</li>
+  <li><strong>Kanban</strong> — originally a Toyota manufacturing method; applied to software engineering around 2004; a Microsoft project used it in 2010; 5 core principles.</li>
+  <li><strong>Extreme Programming (XP)</strong> — a rule set (12 rules) layered on existing software engineering to react even faster to changing requirements.</li>
+</ul>
+
+<div class="lecture">
+<span class="tag">Lecture insight — why Agile exists</span>
+<span class="timestamp">~00:00–01:32</span>
+<p>Agile is less a rigid "process" and more a <strong>philosophy</strong>: "respond nimbly to whatever comes up." The kind of sudden problem Agile is built to absorb includes things like a new foreign <strong>regulation</strong> suddenly requiring a certain development approach, or a <strong>newly disclosed vulnerability</strong> — the classic example is <strong>Heartbleed</strong>, which suddenly broke a huge amount of existing TLS communication and leaked information. When something like that hits mid-project, you need a way to fold the fix into your current development as fast as possible — that's exactly what Agile was designed for.</p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight — development-cycle comparison</span>
+<span class="timestamp">~15:48–18:44</span>
+<p>Compared to other SDLC models, Agile's sprint length is remarkably short:</p>
+<ul>
+  <li><strong>Waterfall</strong>: heavily used by large conglomerates and especially the <strong>defense industry</strong>, where the whole process — software included — runs on a roughly <strong>yearly</strong> cycle.</li>
+  <li><strong>Automotive industry</strong>: typically follows the <strong>V-model</strong>; a new car's development can take many months to a full year, which is why you don't get your ordered car immediately.</li>
+  <li><strong>Microsoft SDL</strong>: usually runs on a <strong>6-month to 1-year</strong> project cycle.</li>
+  <li><strong>Agile/Scrum</strong>: a sprint is only <strong>1–4 weeks</strong>, and a full Agile lifecycle is often just <strong>1–2 months</strong> — this short cycle is exactly what lets teams react quickly to new vulnerabilities or changing customer requirements that longer-cycle models can't handle well.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="kanban">
+<h2>2. Kanban</h2>
+<div class="card">
+<p><strong>Origin:</strong> First used by <strong>Toyota</strong> to efficiently produce car parts; adapted into software engineering around <strong>2004</strong>; a Microsoft project applied it in 2010; built on <strong>5 core principles</strong>.</p>
+
+<div class="lecture">
+<span class="tag">Lecture insight — the original factory-floor Kanban</span>
+<span class="timestamp">~02:31–07:19</span>
+<p>At Toyota, large parts bins were divided into sections by part type for workers assembling cars. As a worker used up a fast-depleting part (e.g., a part with only one unit per car), a <strong>support worker</strong> would watch the worker's task load and the remaining part inventory, and proactively refill the bin so the line kept moving efficiently. That visual, "watch what's running low and reallocate help accordingly" idea is the root of Kanban.</p>
+<p>In software, this became a <strong>visual board</strong> showing whether each task/test is in an early, nearly-done, or completed state — so anyone can see project progress at a glance. If one developer finishes their assigned tests early, a manager can look at the board and reassign them to help a teammate who's still working. <strong>Core idea:</strong> visually surface work status/progress so a team or organization can allocate effort more efficiently. (Scrum has a similar visual mechanism too — see the Burndown Chart section below.)</p>
+</div>
+</div>
+</section>
+
+<section id="scrum">
+<h2>3. Scrum — Overview</h2>
+<div class="card">
+<p><strong>Core idea:</strong> a product owner brings a set of requirements; the team plans how/when they'll deliver features that satisfy those requirements, then executes in short, repeated cycles with daily check-ins.</p>
+
+<h3>Scrum components</h3>
+<ul>
+  <li><span class="term">Scrum Master</span>: removes blockers slowing the dev team down; coordinates scrum events/meetings.</li>
+  <li><span class="term">Product Owner</span>: defines and prioritizes items for the Product Backlog; maintains continuous communication with the dev team.</li>
+  <li><span class="term">Development Team</span>: the developers themselves.</li>
+  <li><span class="term">Product Backlog</span>: the customer's wish list — acceptance criteria, vulnerabilities to consider, desired features, etc.</li>
+  <li><span class="term">Sprint Backlog</span>: the specific work/plan chosen by the dev team + product owner at the start of a sprint.</li>
+  <li><span class="term">Burndown Chart</span>: a chart of remaining work vs. time.</li>
+</ul>
+
+<div class="lecture">
+<span class="tag">Lecture insight — Scrum's rhythm, end to end</span>
+<span class="timestamp">~35:41–37:22</span>
+<p>Putting it all together: the customer (product owner) decides <strong>what</strong> needs to be done → the team forms and decides <strong>how</strong> in the <strong>Sprint Planning Meeting</strong> → that produces the <strong>Sprint Backlog</strong> → the team executes it under the <strong>Scrum Master</strong> for 1–4 weeks → the whole team holds a formal <strong>Sprint Review</strong> (and <strong>Sprint Retrospective</strong>) once per sprint → meanwhile, every single day, the team shares individual progress in a <strong>Daily Scrum Meeting</strong> → and each member's real-time progress feeds the <strong>Burndown Chart</strong>.</p>
+</div>
+</div>
+</section>
+
+<section id="backlog">
+<h2>4. Epic / User Story / Task &amp; the Backlogs</h2>
+<div class="card">
+<h3>Epic → User Story → Task hierarchy</h3>
+<table>
+<tr><th>Term</th><th>Meaning</th><th>Example</th></tr>
+<tr><td><strong>Epic</strong></td><td>A large chunk of work spanning <strong>multiple sprints</strong>; has a rough description but no detailed spec — essentially the project's <strong>final goal</strong></td><td>"App users can look up and trade home prices"</td></tr>
+<tr><td><strong>User Story</strong></td><td>A single-sticky-note-sized <strong>requirement</strong>, written in plain user language, describing one feature from the user's point of view — the smallest unit of requirement</td><td>"App users should see nearby housing prices collected via GPS + internet"</td></tr>
+<tr><td><strong>Task</strong></td><td>A very concrete unit of work needed to fulfill a story; one story can contain multiple tasks</td><td>"Process GPS signal," "perform network communication," "render mobile UI"</td></tr>
+<tr><td><strong>Story Point</strong></td><td>The relative development time/effort estimated to complete a user story</td><td>—</td></tr>
+</table>
+
+<div class="lecture">
+<span class="tag">Lecture insight — why "Epic" has no fixed platform/approach</span>
+<span class="timestamp">~11:01–14:49</span>
+<p>An Epic is basically the project's ultimate goal — e.g., "build a mobile finance app." Because that goal is achieved gradually, over <strong>many sprints</strong>, the specific "how" (which platform, which exact features) isn't decided at the Epic level. Those details only emerge once you break the Epic into <strong>User Stories</strong> (e.g., "provide transfer service," "provide balance inquiry," "provide loan service") and then into <strong>Tasks</strong>.</p>
+</div>
+
+<h3>Product Backlog vs. Sprint Backlog</h3>
+<table>
+<tr><th></th><th>Product Backlog</th><th>Sprint Backlog</th></tr>
+<tr><td>Scope</td><td>The full customer wish list — acceptance criteria, vulnerabilities to consider, all desired features</td><td>A subset of stories chosen from the Product Backlog for <em>this</em> sprint</td></tr>
+<tr><td>Decided in</td><td>Ongoing / Product Owner's responsibility</td><td>The Sprint Planning Meeting</td></tr>
+<tr><td>Selection criterion</td><td>—</td><td>As many user stories as can realistically be completed within the sprint window, at a level that yields a workable result</td></tr>
+</table>
+
+<div class="qa">
+<span class="tag">Class note — format doesn't matter, content does</span>
+<span class="timestamp">~18:44–19:44</span>
+<p>There's no mandatory template for a Sprint Backlog — it doesn't have to explicitly separate Epic / User Story / Task. What actually matters is that three things are unambiguous: <strong>Who</strong> (the assignee/task), <strong>What</strong> (the user story), and <strong>How</strong> (the sub-details of the task). Any layout that makes those three clear is acceptable.</p>
+</div>
+</div>
+</section>
+
+<section id="meetings">
+<h2>5. Scrum Meetings (Ceremonies)</h2>
+<div class="card">
+
+<h3>5.1 Sprint Planning Meeting</h3>
+<ul>
+  <li><strong>Overall planning:</strong> focuses on understanding what the user wants, via the Product Owner (the user's representative). The Scrum Master reviews the Product Backlog to see which items were ranked highest, and discusses the background/goals with the team to understand the Product Owner's intent.</li>
+  <li><strong>Detailed planning:</strong> establishes a concrete plan for how the top-priority items will be implemented; decides what will be developed from the prioritized backlog; produces the Sprint Backlog and estimates time needed for each task.</li>
+</ul>
+<div class="lecture">
+<span class="tag">Lecture insight</span>
+<span class="timestamp">~08:18–09:18</span>
+<p>Think of the Sprint Planning Meeting as a project <strong>kickoff meeting</strong> — deciding how the work will be carried out and what the final deliverable will look like.</p>
+</div>
+
+<h3>5.2 Daily Scrum Meeting</h3>
+<ul>
+  <li>Held standing up, at a fixed time each day, short (~15 minutes)</li>
+  <li>Checks progress only — is the sprint backlog being developed properly?</li>
+  <li>All team members attend</li>
+  <li>Each person states what they did yesterday and will do today</li>
+  <li>Each person briefly mentions blockers/difficulties</li>
+  <li>Completed sub-tasks are moved to "done"; the Sprint board is updated; the day's remaining work is logged on the Burndown Chart</li>
+</ul>
+<div class="lecture">
+<span class="tag">Lecture insight — informal by design</span>
+<span class="timestamp">~10:13–11:01</span>
+<p>Despite the name, a Daily Scrum isn't a formal presentation with slides — the lecturer jokingly compared it to a "smoke-break chat": roughly 10–15 minutes where people quickly say what they've built so far, flag that a teammate's function might get called by theirs, and coordinate accordingly. The point is purely to <strong>share current status</strong>, not to plan the project.</p>
+</div>
+<div class="qa">
+<span class="tag">Key distinction: Planning Meeting vs. Daily Meeting</span>
+<span class="timestamp">~24:15–25:19</span>
+<p><strong>Sprint Planning Meeting</strong> = deciding <em>who</em> does <em>what</em>, <em>how</em>, and <em>by when</em> (setting the rules — like a project kickoff). <strong>Daily Scrum Meeting</strong> = sharing whether development is going well <em>according to those already-set rules</em> (status-sharing only). Their purposes are distinctly different.</p>
+</div>
+
+<h3>5.3 Sprint Review</h3>
+<ul>
+  <li>Reviews the working product produced at the end of a single sprint cycle (2–4 weeks)</li>
+  <li>Focuses on whether sprint goals were met, checking work/output and overall business value</li>
+  <li>The team demonstrates the sprint's results to attendees (including the customer) and checks how well requirements were satisfied</li>
+  <li>The Scrum Master may run a short retrospective on what went well/could improve</li>
+  <li>Kept to <strong>4 hours or less</strong></li>
+</ul>
+
+<div class="qa">
+<span class="tag">Key concept link — Sprint Review = Validation (V-model terms)</span>
+<span class="timestamp">~27:16–28:58</span>
+<p><em>Class exercise: "In V-model terms, what does the Sprint Review correspond to?"</em></p>
+<p>Answer: demonstrating the sprint's output to stakeholders and checking how well it satisfies requirements is exactly the definition of <strong>Validation</strong> — "are we building the right product?" (Recall <strong>Verification</strong> = checking whether design matches requirements and implementation matches design.) Since the Sprint Review is done <em>with the customer present</em>, it leans heavily toward Validation, even though some verification-style checking happens too.</p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight — why only 4 hours?</span>
+<span class="timestamp">~29:42–30:34</span>
+<p>Since Agile's whole premise is a very short development cycle, spending too long on ceremonies and meeting write-ups would defeat the purpose — so Scrum explicitly caps the review at 4 hours. (The lecturer noted that "real" corporate/R&D meetings routinely run 5–6 hours including meals — so 4 hours is actually a deliberately tight constraint by comparison.)</p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight — meeting minutes matter, but stay lean</span>
+<span class="timestamp">~31:26–33:12</span>
+<p>Producing meeting minutes is itself real work — the lecturer recalled that as a new hire, being asked to write minutes seemed trivial until getting corrected: good minutes need to clearly capture <em>who asked for what</em>, <em>how the team responded</em>, and <em>what changes/direction that implies for the project</em> — not a verbatim transcript. Agile's guideline is to keep this documentation as lean as possible (sometimes skipping formal minutes altogether), which is part of why Scrum relies on frequent, lightweight **Daily** meetings instead of heavy documentation.</p>
+</div>
+
+<h3>5.4 Sprint Retrospective</h3>
+<ul>
+  <li>Looks back on the sprint's activities and output; checks for improvements and whether team rules/standards were followed</li>
+  <li>Focuses on identifying and <strong>amplifying strengths</strong> rather than hunting for weaknesses</li>
+  <li>Not a "solve the problem" meeting — just identify and log issues</li>
+  <li>Compares estimated vs. actual velocity, and analyzes the gap if it's large (process quality itself is <strong>not</strong> measured)</li>
+</ul>
+<div class="lecture">
+<span class="tag">Lecture insight — the point of the retrospective</span>
+<span class="timestamp">~28:58–29:42</span>
+<p>If one teammate finished faster than another, the retrospective is where the team hears <em>how</em> they did it, so others can adopt the same approach next time — it's about spreading lessons learned across the team, not assigning blame.</p>
+</div>
+</section>
+
+<section id="burndown">
+<h2>6. Burndown Chart</h2>
+<div class="card">
+<ul>
+  <li>Shows how work is progressing vs. plan, as remaining work per day</li>
+  <li>Since it tracks <em>remaining</em> work, the chart trends downward over time</li>
+  <li><strong>X-axis:</strong> time (days within the sprint cycle)</li>
+  <li><strong>Y-axis:</strong> estimated days of completed work (expressed in story points)</li>
+  <li><strong>Planned line</strong> (dotted): remaining work per day as originally planned</li>
+  <li><strong>Actual line</strong> (solid): remaining work per day as work actually proceeds</li>
+</ul>
+
+<div class="lecture">
+<span class="tag">Lecture insight — why leaders need this chart</span>
+<span class="timestamp">~21:34–23:38</span>
+<p>An individual developer can track their own progress just by working. But a <strong>project lead</strong>, who isn't directly coding, has a hard time knowing at a glance how far along each piece of work is. The Burndown Chart solves this: if it shows one developer (e.g., "Kim Hee-seok" in the example table) has finished their assigned sprint items early and is now idle, the <strong>Scrum Master</strong> can reassign them to help with another task (like grade registration or course setup) — reallocating effort based purely on what the chart shows.</p>
+</div>
+</div>
+</section>
+
+<section id="xp">
+<h2>7. Extreme Programming (XP)</h2>
+<div class="card">
+<p><strong>Core idea:</strong> prioritizes source code over documentation, and individual responsibility/courage over organized process. Programmers write test code as they code, and the whole project runs on a test-driven basis. 12 rules help the team react even faster than usual to changing requirements.</p>
+
+<div class="lecture">
+<span class="tag">Lecture insight — XP ≈ Build &amp; Fix, but structured</span>
+<span class="timestamp">~37:22–39:14</span>
+<p>XP is essentially a more <strong>disciplined evolution of the Build &amp; Fix model</strong>: write code → test it → if a bug is found, go back and fix, then retest the latest version → once no bugs are found, release with user sign-off. It's structurally very similar to Build &amp; Fix (code → test → fix loop), just wrapped in more systematic practices (small releases, pair programming, TDD, etc.) that make the loop safer and faster.</p>
+</div>
+
+<h3>The 12 XP Rules</h3>
+<ol>
+  <li><strong>User Stories (Planning):</strong> like use cases — defines the customer's required feature set (functions, value, priorities); used later for cost estimation and management</li>
+  <li><strong>Small Releases:</strong> simple but frequent updates; every new requirement is integrated and the system re-released quickly</li>
+  <li><strong>(System) Metaphor:</strong> developers follow naming conventions for objects/methods, to keep everyone's mental model of the design aligned</li>
+  <li><strong>Collective Ownership:</strong> code review isn't limited to one person — the whole team reviews any given piece of code</li>
+  <li><strong>Coding Standard:</strong> the whole team follows a unified coding style/format</li>
+  <li><strong>Simple Design:</strong> design should be simple enough for newcomers to understand quickly</li>
+  <li><strong>(Code) Refactoring:</strong> remove duplicated or unnecessary code</li>
+  <li><strong>Testing (TDD):</strong> develop based on automated unit tests first; release only after tests pass</li>
+  <li><strong>Pair Programming:</strong> two people work together on a given piece of code — one writes, the other reviews and suggests improvements</li>
+  <li><strong>Continuous Integration:</strong> developers always keep the product in a fully integrated (buildable) state</li>
+  <li><strong>40-hour Workweek:</strong> weekly hours capped (the slide says no more than 45 hrs/week) so the team stays sharp</li>
+  <li><strong>On-site Customer:</strong> the customer is fully embedded in development — answering team questions, setting priorities, resolving disputes as needed</li>
+</ol>
+
+<div class="qa">
+<span class="tag">Class discussion — why Pair Programming?</span>
+<span class="timestamp">~40:13–41:27</span>
+<p><em>Question: "Wouldn't adding one more coder just be faster on their own?"</em></p>
+<p><strong>Answer:</strong> pair programming exists to catch what a solo developer would miss. Just as a classmate might tell you "you also need to study this," or a reader might interpret your writing completely differently than you intended, code can also "work as expected" from the author's point of view while actually implementing the <strong>wrong</strong> logic — a second person reviewing catches this.</p>
+</div>
+
+<div class="example">
+<span class="tag">Worked example — Fault vs. Error vs. Failure</span>
+<span class="timestamp">~42:37–46:21</span>
+<p><strong>Definitions:</strong></p>
+<ul>
+  <li><span class="term">Fault (결함)</span> — an incorrect part of the code itself.</li>
+  <li><span class="term">Error</span> — a variable or program state that deviates from the intended one, <em>caused by</em> a fault.</li>
+  <li><span class="term">Failure</span> — an incorrect (externally observable) output result, caused by that erroneous state.</li>
+</ul>
+<p><strong>Scenario:</strong> a developer intends to implement <code>y = x²</code>, but accidentally codes <code>y = 2x</code>. The developer's test criterion is: "if x = 1, y should output 4."</p>
+<table>
+<tr><th>Test input</th><th>Fault present?</th><th>Error present?</th><th>Failure present?</th><th>Why</th></tr>
+<tr><td>x = 2 (test checks y=4 when x=2)</td><td>Yes</td><td>No</td><td>No</td><td>With x=2, <code>2x = 4</code> — the wrong code coincidentally produces the expected output, so nothing looks wrong from the outside, even though the code itself is objectively incorrect (a fault).</td></tr>
+<tr><td>x = 1 (test checks y=2 when x=1)</td><td>Yes</td><td>Yes</td><td>Yes</td><td>The intended y=x² should give y=1, but the coded y=2x gives y=2 — the wrong internal state (error) now surfaces as a visibly wrong result (failure).</td></tr>
+</table>
+<p><strong>Takeaway:</strong> a fault can exist silently in code without ever producing an observable error or failure, depending on which inputs are tested — which is exactly why relying on a single developer's own testing isn't reliable, and why Pair Programming / broader test coverage matters.</p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture note</span>
+<span class="timestamp">~47:02</span>
+<p>TDD (Test-Driven Development) will be covered in more depth in the dedicated testing lecture later in the course.</p>
+</div>
+</div>
+</section>
+
+<section id="summary">
+<h2>Quick Reference Summary</h2>
+<div class="card">
+<table>
+<tr><th>Concept</th><th>One-line takeaway</th></tr>
+<tr><td>Agile philosophy</td><td>React quickly to change (new regs, new vulnerabilities, shifting requirements) via short cycles</td></tr>
+<tr><td>Kanban</td><td>Visualize task status (from Toyota's parts-bin system) to reallocate effort efficiently</td></tr>
+<tr><td>Scrum roles</td><td>Scrum Master (removes blockers), Product Owner (defines/prioritizes backlog), Dev Team (builds)</td></tr>
+<tr><td>Epic / Story / Task</td><td>Epic = final goal (spans sprints) → User Story = one user-facing requirement → Task = concrete dev activity</td></tr>
+<tr><td>Sprint</td><td>1–4 week development cycle; whole Agile lifecycle often just 1–2 months</td></tr>
+<tr><td>Sprint Planning Meeting</td><td>Kickoff: decide who/what/how/by-when → produces Sprint Backlog</td></tr>
+<tr><td>Daily Scrum Meeting</td><td>Short daily status-share only (not planning)</td></tr>
+<tr><td>Sprint Review</td><td>Demo results to stakeholders; mostly <strong>Validation</strong>-flavored; ≤4 hours</td></tr>
+<tr><td>Sprint Retrospective</td><td>Reflect on strengths to amplify; log (don't necessarily solve) issues; compare estimated vs. actual velocity</td></tr>
+<tr><td>Burndown Chart</td><td>Remaining work vs. time — helps leads reallocate tasks efficiently</td></tr>
+<tr><td>XP</td><td>Structured evolution of Build &amp; Fix; 12 rules; test-first, pair-reviewed development</td></tr>
+<tr><td>Fault / Error / Failure</td><td>Wrong code → wrong internal state → wrong observable output (each can exist without the next, depending on test inputs)</td></tr>
+</table>
+</div>
+</section>
+
+</main>
+
+<footer>
+  Compiled from the Week 2 "Agile model" lecture slides and the accompanying lecture recording — for exam review use.
+</footer>
+
+</body>
+</html>
