@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Practice Questions — Weeks 2–5</title>
+<style>
+  :root{
+    --maroon:#7a1f2b;
+    --tan:#c9b79c;
+    --ink:#242021;
+    --paper:#fdfbf8;
+    --card:#ffffff;
+    --note-bg:#fbf3e7;
+    --note-border:#d9a441;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  header{
+    background:linear-gradient(120deg,var(--maroon),#5a151d);
+    color:#fff;
+    padding:2.5rem 2rem 2rem;
+  }
+  header h1{margin:0 0 .3rem;font-size:1.8rem;}
+  header p{margin:0;opacity:.9;font-size:.95rem;}
+  nav{
+    background:#efe6d8;
+    padding:.8rem 2rem;
+    position:sticky;
+    top:0;
+    z-index:10;
+    border-bottom:3px solid var(--maroon);
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  nav a{
+    color:var(--maroon);
+    text-decoration:none;
+    font-weight:600;
+    margin-right:1.1rem;
+    font-size:.87rem;
+  }
+  nav a:hover{text-decoration:underline;}
+  main{max-width:920px;margin:0 auto;padding:2rem;}
+  section{margin-bottom:2.8rem;}
+  h2{
+    color:var(--maroon);
+    border-bottom:3px solid var(--tan);
+    padding-bottom:.4rem;
+    font-size:1.4rem;
+  }
+  h3{color:#5a151d;font-size:1.12rem;margin-top:1.4rem;}
+  h4{color:#5a151d;font-size:1rem;margin-top:1rem;margin-bottom:.4rem;}
+  .card{
+    background:var(--card);
+    border:1px solid #e6ddcf;
+    border-radius:10px;
+    padding:1.2rem 1.4rem;
+    margin:1rem 0;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  ul{padding-left:1.3rem;}
+  li{margin-bottom:.35rem;}
+  ol{padding-left:1.3rem;}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.9rem;}
+  th,td{border:1px solid #ddd0ba;padding:.5rem .65rem;text-align:left;vertical-align:top;}
+  th{background:var(--tan);color:#3a2c1a;}
+  tr:nth-child(even) td{background:#faf6ef;}
+  code{background:#f0ece3;padding:.1rem .35rem;border-radius:4px;font-size:.88rem;}
+
+  .keypoint{
+    background:var(--note-bg);
+    border-left:5px solid var(--note-border);
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .keypoint .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#8a5a10;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .keypoint .tag::before{content:"⭐ ";}
+  .example{
+    background:#eef6ee;
+    border-left:5px solid #4d8a5c;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .example .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2c6b3a;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .example .tag::before{content:"🧩 ";}
+  .warn{
+    background:#fbeaea;
+    border-left:5px solid #b5473f;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .warn .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#9c352d;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .warn .tag::before{content:"⚠ ";}
+  .term{font-weight:700;color:var(--maroon);}
+  .stage-badge{
+    display:inline-block;
+    background:var(--maroon);
+    color:#fff;
+    border-radius:20px;
+    padding:.15rem .8rem;
+    font-size:.8rem;
+    font-weight:700;
+    margin-right:.5rem;
+  }
+  footer{
+    text-align:center;
+    color:#8a7a5e;
+    font-size:.85rem;
+    padding:2rem 0;
+  }
+
+  .lecture{
+    background:#fbf3e7;
+    border-left:5px solid #d9a441;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .lecture .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#8a5a10;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .lecture .tag::before{content:"🎙 ";}
+  .qa{
+    background:#eef3f6;
+    border-left:5px solid #4d7ea8;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .qa .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2f5c80;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .qa .tag::before{content:"💬 ";}
+  .examtip{
+    background:#fff4d6;
+    border:2px solid #d9a441;
+    border-radius:8px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .examtip .tag{
+    display:inline-block;
+    font-weight:800;
+    color:#7a1f2b;
+    margin-bottom:.5rem;
+    font-size:.88rem;
+    text-transform:uppercase;
+  }
+  .examtip .tag::before{content:"🎯 ";}
+  .timestamp{color:#8a7a5e;font-size:.8rem;font-style:italic;}
+
+  .q{background:#fff;border:1px solid #e6ddcf;border-radius:10px;padding:1rem 1.3rem;margin:1rem 0;box-shadow:0 1px 3px rgba(0,0,0,.05);}
+  .q p{margin:.3rem 0;}
+  details{margin-top:.6rem;background:#faf6ef;border-radius:6px;padding:.5rem .8rem;}
+  summary{cursor:pointer;font-weight:700;color:#7a1f2b;}
+  details[open] summary{margin-bottom:.4rem;}
+  #toggleAll{background:#7a1f2b;color:#fff;border:0;border-radius:6px;padding:.5rem 1rem;font-weight:700;cursor:pointer;}
+  #toggleAll:hover{background:#5a151d;}
+</style>
+</head>
+<body>
+<p style="margin:0;padding:.5rem 2rem;background:#efe6d8;font-size:.85rem"><a href="index.html" style="color:#7a1f2b;text-decoration:none;font-weight:600">&larr; Back to Notes Hub</a></p>
+<header>
+  <h1>Practice Questions — Weeks 2–5</h1>
+  <p>Exam-style questions with hidden answers. Try each on paper first, then click to check.</p>
+</header>
+
+<nav>
+  <a href="#how">How to use</a>
+  <a href="#w2">Week 2: SDLC</a>
+  <a href="#w3">Week 3: MS-SDL</a>
+  <a href="#w4">Week 4: STRIDE &amp; LINDDUN</a>
+  <a href="#w5">Week 5: SPARTA</a>
+  <a href="#mixed">Mini case study</a>
+</nav>
+
+<main>
+
+<section id="how">
+<h2>How to use this page</h2>
+<div class="examtip">
+<span class="tag">Study method</span>
+<ul>
+  <li>Cover the answer, write yours on paper (the real exam is handwritten), <em>then</em> click "Show answer."</li>
+  <li>The lecturer said the exam is 1 hour with <strong>per-step questions</strong> and that an <strong>attack library will be given</strong>. So the worked problems (counting, drawing, scoring) matter more than memorized lists.</li>
+  <li>Questions are written from the slides and lecture notes; they are practice, not the real exam.</li>
+</ul>
+<button id="toggleAll" type="button">Show / hide all answers</button>
+</div>
+</section>
+
+<section id="w2">
+<h2>Week 2 — Software Development Life Cycle</h2>
+
+<div class="q"><p><strong>Q1.</strong> Fill in: Verification asks "Are we building the product ____?" and Validation asks "Are we building the ____ product?" Then classify each activity as verification or validation: (a) a walkthrough of the design document against the requirements, (b) a customer demo of the finished sprint output, (c) an inspection of the test cases.</p>
+<details><summary>Show answer</summary>
+<p>Verification: "<strong>right</strong>"; Validation: "<strong>right</strong>" (are we building the <em>right</em> product). (a) Verification (reviews/walkthroughs/inspections of intermediate work products). (b) Validation (checks the actual software against business requirements). (c) Verification.</p></details></div>
+
+<div class="q"><p><strong>Q2.</strong> A developer intends <code>y = x²</code> but writes <code>y = 2x</code>. The test case is "x = 2 should give y = 4". Identify whether a fault, an error, and a failure occur. Repeat for the test "x = 1 should give y = 1".</p>
+<details><summary>Show answer</summary>
+<p><strong>x = 2:</strong> fault <strong>yes</strong> (the code itself is wrong), error <strong>no</strong> (2·2 = 4, same as the intended 2² = 4), failure <strong>no</strong>. The fault stays hidden.</p>
+<p><strong>x = 1:</strong> fault yes, error yes (internal state is 2 instead of 1), failure yes (output 2 ≠ expected 1).</p>
+<p>Takeaway: a fault can exist without being visible depending on the test input; this is one reason pair programming / broader test coverage matter.</p></details></div>
+
+<div class="q"><p><strong>Q3.</strong> Match each development phase on the left side of the V-model to the test that verifies it: Requirements analysis, Architecture design, Module design. Where do Acceptance tests fit?</p>
+<details><summary>Show answer</summary>
+<p>Requirements analysis ↔ <strong>System Test</strong>; Architecture design ↔ <strong>Integration Test</strong>; Module design ↔ <strong>Unit Test</strong>. The <strong>Acceptance Test</strong> comes after the System Test (top right of the V) and judges whether the user will accept the system (satisfaction, not defect hunting).</p></details></div>
+
+<div class="q"><p><strong>Q4.</strong> A requirement says "the product must communicate securely." The design splits it into key generation, protocol-suite selection, and hash generation. Which test checks each of: (a) "the key must be 128-bit", (b) these design-level functions working together, (c) "the whole system is secure when transmitting"? And how does System Test differ from Acceptance Test?</p>
+<details><summary>Show answer</summary>
+<p>(a) <strong>Unit test</strong> (the key-generation function itself). (b) <strong>Integration test</strong>. (c) <strong>System test</strong>.</p>
+<p>System test = developer tests in their own/lab environment; Acceptance test = the finished product in the real environment (e.g., real app install, real Wi-Fi).</p></details></div>
+
+<div class="q"><p><strong>Q5.</strong> Choose the best-fitting model and give one reason: (a) requirements are stable and a well-documented, sequential process is needed; (b) requirements are unclear and users must see something quickly; (c) a large, high-risk project where early risk analysis matters; (d) very short release cycles and frequently changing requirements.</p>
+<details><summary>Show answer</summary>
+<p>(a) <strong>Waterfall</strong> (simple, systematic documentation, suits low requirement change). (b) <strong>Prototype</strong> (iterative requirement refinement with an executable prototype). (c) <strong>Spiral</strong> (risk analysis each loop, reduces chance of cancellation). (d) <strong>Agile</strong> (short sprints, quick response to change).</p></details></div>
+
+<div class="q"><p><strong>Q6.</strong> What does "risk" mean in the Spiral model? Give three examples.</p>
+<details><summary>Show answer</summary>
+<p>Project-management risk (things that cause schedule delay or extra cost), <strong>not</strong> "which feature has the most vulnerabilities." Examples: developer turnover, requirement changes after confirmation, the client's financial trouble, needing more manpower than expected, running out of time, going over budget. The Spiral model also prioritizes which feature to build first.</p></details></div>
+
+<div class="q"><p><strong>Q7.</strong> Give two disadvantages of Waterfall and two of Build &amp; Fix.</p>
+<details><summary>Show answer</summary>
+<p><strong>Waterfall:</strong> each stage must be finished before the next; deliverables must be near-perfect or errors propagate; users see nothing until late; fixing a late-found problem means revising earlier stages and costs grow exponentially.</p>
+<p><strong>Build &amp; Fix:</strong> no fixed process or documented deliverables so it is hard to manage/maintain; team can't divide work effectively; progress is hard to see.</p></details></div>
+
+<div class="q"><p><strong>Q8.</strong> Scrum: who does what? Name the three roles and state what the Sprint Planning Meeting and the Daily Scrum each decide or share. Which is closest to a "kickoff meeting"?</p>
+<details><summary>Show answer</summary>
+<p><strong>Scrum Master</strong> removes blockers and coordinates scrum events; <strong>Product Owner</strong> defines and prioritizes Product Backlog items and communicates with the team; <strong>Development Team</strong> builds.</p>
+<p><strong>Sprint Planning Meeting</strong> (kickoff-like): decide who does what, how, by when → produces the Sprint Backlog. <strong>Daily Scrum</strong> (~15 min, standing): share status (yesterday / today / blockers) against the already-set plan; update the board and burndown chart. Planning sets the rules; the Daily Scrum checks progress against them.</p></details></div>
+
+<div class="q"><p><strong>Q9.</strong> In V-model terms, what does the Sprint Review correspond to, and why? How long should it take at most?</p>
+<details><summary>Show answer</summary>
+<p><strong>Validation</strong> — the team demos the working product to attendees (including the customer) and checks how well it meets requirements ("are we building the right product?"). Keep it to <strong>4 hours or less</strong>.</p></details></div>
+
+<div class="q"><p><strong>Q10.</strong> Define Epic, User Story, Task, and Story Point with one example each (use a mobile finance app).</p>
+<details><summary>Show answer</summary>
+<p><strong>Epic:</strong> large goal spanning several sprints (e.g., "users can manage money in the app"). <strong>User Story:</strong> one sticky-note requirement in user language (e.g., "a user can check account balance"). <strong>Task:</strong> concrete work for a story (e.g., call the balance API, design the screen). <strong>Story point:</strong> relative effort/time to complete a story.</p></details></div>
+
+<div class="q"><p><strong>Q11.</strong> Name any six of the twelve XP rules, and explain why pair programming helps.</p>
+<details><summary>Show answer</summary>
+<p>User Stories, Small Releases, System Metaphor, Collective Ownership, Coding Standard, Simple Design, Refactoring, Testing (TDD), Pair Programming, Continuous Integration, 40-hour Workweek (slide caps at 45 hrs), On-site Customer.</p>
+<p>Pair programming: a second person reviews and catches logic that "works" from the author's view but is actually wrong (like the hidden-fault example in Q2).</p></details></div>
+
+<div class="q"><p><strong>Q12.</strong> What do the planned (dotted) and actual (solid) lines on a burndown chart show, and why does a project lead use it?</p>
+<details><summary>Show answer</summary>
+<p>Y-axis: remaining work (story points); X-axis: days in the sprint. Dotted = planned remaining work per day; solid = actual remaining work. The chart goes <em>down</em> over time. A lead (who isn't coding) can see who finished early and reassign effort, and see whether the sprint is on track.</p></details></div>
+</section>
+
+<section id="w3">
+<h2>Week 3 — MS-SDL</h2>
+
+<div class="q"><p><strong>Q1.</strong> Which of these products must follow SDL? (a) a mail server used across enterprises, (b) a personal offline calculator app, (c) a medical app storing patient data, (d) a browser, (e) software that auto-downloads updates.</p>
+<details><summary>Show answer</summary>
+<p>Must follow SDL: (a), (c) (PII), (d) (sends/receives data over the internet), (e). (b) is not mandatory (SDL is still <em>recommended</em> for all software). Mandatory cases: enterprise-common products, regularly handles PII, regularly sends/receives data over the internet, automatically downloads updates.</p></details></div>
+
+<div class="q"><p><strong>Q2.</strong> Which secure design principle is illustrated? (a) A new account has no permissions until explicitly granted. (b) A backup job runs only with the rights it needs. (c) Every file read goes through the same permission check. (d) The algorithm is public; only the key is secret. (e) Both a firewall and application-level authentication protect the same service. (f) Each process writes to its own log file instead of a shared one.</p>
+<details><summary>Show answer</summary>
+<p>(a) <strong>Fail-safe Defaults</strong>; (b) <strong>Least Privilege</strong>; (c) <strong>Complete Mediation</strong>; (d) <strong>Open Design</strong> (Kerckhoffs's Principle); (e) <strong>Defense in Depth</strong>; (f) <strong>Least Common Mechanism</strong>.</p></details></div>
+
+<div class="q"><p><strong>Q3.</strong> State the three Attack Surface Reduction steps and give the IIS example for step 1 and the Sasser example for step 2.</p>
+<details><summary>Show answer</summary>
+<p>1) Is the feature really necessary? (if not ~80% of users need it, default it to off) — IIS 6.0 on Windows Server 2003 isn't installed by default, whereas IIS 5.0 on Windows 2000 was. 2) Who needs access, and from where? (remote anonymous is far riskier than local admin) — Server 2003 wasn't affected by Sasser because the target area needed an admin physically at the keyboard. 3) Reduce privileges (run in non-admin mode; services under low-risk accounts, not Local System).</p></details></div>
+
+<div class="q"><p><strong>Q4.</strong> What is a Bug Bar, and which bug severities must be fixed before release under SDL?</p>
+<details><summary>Show answer</summary>
+<p>The Bug Bar defines the nature of a threat and its risk level, set at project start so everyone knows what must be fixed, mitigated, or left. SDL requires fixing <strong>Critical, Important, and Moderate</strong> security/privacy bugs before release.</p></details></div>
+
+<div class="q"><p><strong>Q5.</strong> A threat is scored D=8, R=6, E=7, A=9, Discoverability=4 under DREAD. What is its average? What does each letter stand for? Why did Microsoft stop using DREAD (2008)?</p>
+<details><summary>Show answer</summary>
+<p>Sum = 34, average = <strong>6.8</strong>. Damage potential, Reproducibility, Exploitability, Affected users, Discoverability.</p>
+<p>Dropped because results were inconsistent between evaluators and too subjective/qualitative; Microsoft now uses Bug Bar information from the MSRC.</p></details></div>
+
+<div class="q"><p><strong>Q6.</strong> Draw the DFD element type for each: (a) an external payment server, (b) the login program, (c) the SQL database's disk storage, (d) the DBMS software, (e) the arrow carrying the password, (f) the boundary between the user's app and the OS.</p>
+<details><summary>Show answer</summary>
+<p>(a) External entity; (b) Process; (c) Data store; (d) Process (the DBMS is software); (e) Data flow; (f) Trust boundary.</p></details></div>
+
+<div class="q"><p><strong>Q7.</strong> Name the 2023 four mitigation (risk-treatment) types and give a one-line example of each.</p>
+<details><summary>Show answer</summary>
+<p><strong>Mitigation</strong> (lower the risk, e.g., add encryption); <strong>Transfer</strong> (shift to another party, e.g., insurance); <strong>Acceptance</strong> (risk low enough to accept); <strong>Elimination</strong> (remove the feature that causes it). The 2011 list had three: warn the user, remove the feature, mitigate technically.</p></details></div>
+
+<div class="q"><p><strong>Q8.</strong> In the SDL Process Maturity Model, what does each rating 0–4 mean for a threat model?</p>
+<details><summary>Show answer</summary>
+<p>0 = no threat model (unacceptable). 1 = outdated (design differs a lot, document over 12 months old). 2 = <strong>OK</strong> (minimum: DFD/asset list, at least one threat per asset, mitigations for Level 1/2/3 threats). 3 = <strong>Good</strong> (meets OK; anonymous/authenticated/local/remote users in DFD; all S/T/I/E threats mitigated and classified; penetration-tested). 4 = <strong>Excellent</strong> (all STRIDE threats identified with mitigations/external security notes; mitigation confirmed per threat; customer-facing safe-use docs planned).</p></details></div>
+
+<div class="q"><p><strong>Q9.</strong> What is Attack Surface Analysis vs Attack Surface Reduction? What is "Psychological Acceptability," and what real-world lesson did Microsoft learn (Windows XP SP2)?</p>
+<details><summary>Show answer</summary>
+<p>ASA identifies the entry points (code, interfaces, services, protocols) an attacker can use and who can reach them; ASR shrinks that surface (less code on by default, fewer users/IDs, lower privileges). Psychological Acceptability: security features must be easy to use or users will turn them off; XP SP2 balanced <strong>security, usability, and backward compatibility</strong>.</p></details></div>
+</section>
+
+<section id="w4">
+<h2>Week 4 — STRIDE &amp; LINDDUN</h2>
+
+<div class="q"><p><strong>Q1.</strong> Fill the table: for each STRIDE threat, give the violated security property. S, T, R, I, D, E.</p>
+<details><summary>Show answer</summary>
+<p>Spoofing → Authentication; Tampering → Integrity; Repudiation → Non-repudiation; Information disclosure → Confidentiality; Denial of service → Availability; Elevation of privilege → Authorization.</p></details></div>
+
+<div class="q"><p><strong>Q2.</strong> A DFD has 2 external entities, 2 processes, 1 data store (no log data), and 4 data flows. Using STRIDE-per-element, how many theoretical threats are there? Show the working.</p>
+<details><summary>Show answer</summary>
+<p>External entity: 2 threats (S, R) × 2 = 4. Process: 6 (S,T,R,I,D,E) × 2 = 12. Data store: 3 (T, I, D; R only if it stores logs) × 1 = 3. Data flow: 3 (T, I, D) × 4 = 12. Total = <strong>31</strong>. (If the store holds log data, +1 for repudiation = 32.)</p></details></div>
+
+<div class="q"><p><strong>Q3.</strong> The real system has functions A, B, C, D, E where A calls B or C or D, then E, which calls A again. Student 1's model has only A, B, C, D. Student 2 draws A→B→E→A with all the functions present. Which student broke completeness, which broke soundness, and why?</p>
+<details><summary>Show answer</summary>
+<p>Student 1 broke <strong>completeness</strong> (a real function is missing from the model). Student 2 broke <strong>soundness</strong> (all functions present, but the call structure/meaning differs from the real system).</p></details></div>
+
+<div class="q"><p><strong>Q4.</strong> Why does the lecturer say to analyze data flows that cross the trust boundary in more detail? Can you skip threats inside the boundary?</p>
+<details><summary>Show answer</summary>
+<p>Real attacks start at external interfaces (SQL injection into a login process, brute force, social engineering), so those flows are where attacks concentrate. Inside the boundary you may <strong>assume</strong> it's safe (e.g., strictly runtime-monitored) and skip those threats as a documented assumption (MS-SDL security assumptions) — or assume it is <em>not</em> safe since internal threats can chain with external attacks.</p></details></div>
+
+<div class="q"><p><strong>Q5.</strong> Match: CVE, CWE, CAPEC, MITRE ATT&amp;CK — (a) weakness types, (b) tactics and techniques from real attacks, (c) flaws in specific products, (d) attack patterns for exploiting a weakness. What is CPE used for?</p>
+<details><summary>Show answer</summary>
+<p>CVE = (c); CWE = (a); CAPEC = (d); ATT&amp;CK = (b). <strong>CPE</strong> (product enumeration, attached to CVE entries) tells which product/product family a vulnerability affects, so you can judge whether it's relevant to <em>your</em> target.</p></details></div>
+
+<div class="q"><p><strong>Q6.</strong> Given the abstract threat "attacker spoofs a legitimate client" and this attack library: AL-V-3 (fake GUI captures credentials), AL-W-3 (capture an ID/password packet and replay it), AL-P-2 (record voice and replay it), AL-V-5 (phishing). The system uses <em>voice</em> login only. Write the concrete spoofing threats and say which entries you drop.</p>
+<details><summary>Show answer</summary>
+<p>Keep AL-P-2 (replay a recorded voice to impersonate the user) and AL-V-5 (phishing/social engineering to get secrets or trick the user). Drop AL-V-3 (fake GUI for typed credentials) and AL-W-3 (ID/password packet replay) since the system doesn't use typed credentials. What you can use from the library depends on what exactly you're modeling.</p></details></div>
+
+<div class="q"><p><strong>Q7.</strong> A STRIDE-per-element threat has no matching entry in your (well-maintained) attack library. Do you delete it? Why or why not?</p>
+<details><summary>Show answer</summary>
+<p>Not automatically. Missing library info doesn't prove it is impossible: zero-days or unknown vulnerabilities may exist, and future resources (e.g., AI/compute) could make it exploitable. Treat it as a <strong>potential security threat</strong> and carry it into scenario/attack-tree work as needed. (The slide example drops such threats; the lecturer's nuance is the safer answer.)</p></details></div>
+
+<div class="q"><p><strong>Q8.</strong> Goal: "steal the customer's login." They need the ID AND the password. The ID can be obtained by packet sniffing OR social engineering; the password can be obtained by packet sniffing OR brute force. Draw the attack tree in text and mark AND/OR. Costs to block each leaf: sniff-ID 5, social-engineer-ID 3, sniff-password 5, brute-force-password 4. What is the cheapest way to neutralize the whole goal?</p>
+<details><summary>Show answer</summary>
+<p>Tree: Root "steal login" = <strong>AND</strong>( "get ID" = <strong>OR</strong>(sniff ID, social-engineer ID), "get password" = <strong>OR</strong>(sniff PW, brute-force PW) ).</p>
+<p>AND rule: blocking <strong>one</strong> child of the AND kills the root. OR rule: to kill an OR child you must block <strong>all</strong> its children. Cost to kill "get ID" = 5 + 3 = 8; cost to kill "get password" = 5 + 4 = 9. Cheapest = block the ID branch (<strong>8</strong>), also weighing reuse of existing security functions.</p></details></div>
+
+<div class="q"><p><strong>Q9.</strong> In an attack tree, what are the root, a leaf, a parent, and a child? How is AND drawn and how is OR drawn? What is a "sequential AND"?</p>
+<details><summary>Show answer</summary>
+<p>Root = attacker's final goal; leaf = a detailed method; parent = goal, child = a condition/method to reach it. AND = arc across the edges (or a line joining them); OR = no mark. Sequential AND = AND with an arrow: one condition must be satisfied before the other (not required for this course).</p></details></div>
+
+<div class="q"><p><strong>Q10.</strong> Compare STRIDE-per-element and STRIDE-per-interaction (pros, cons). Which one does MS-TMT effectively use, and how does it feel as easy as per-element?</p>
+<details><summary>Show answer</summary>
+<p>Per-element: fast and simple, but abstract and misses threats from interactions. Per-interaction: more concrete (e.g., Bluetooth beacon spoofing) but depends on analyst knowledge, slower, more complex (brainstorming). MS-TMT uses per-interaction: analysts' knowledge was turned into patterns applied automatically, so it looks as easy as per-element.</p></details></div>
+
+<div class="q"><p><strong>Q11.</strong> Write the seven LINDDUN threats and the property each violates. Which ones apply to an <em>external entity</em> under the per-element table?</p>
+<details><summary>Show answer</summary>
+<p>Linkability (unlinkability); Identifiability (anonymity/pseudonymity); Non-repudiation (plausible deniability); Detectability (undetectability/unobservability); information Disclosure (confidentiality); content Unawareness (content awareness); policy &amp; consent Non-compliance (compliance). External entity: <strong>L, I, U</strong>. Process, data flow, and data store: L, I, N, D, D, and Non-compliance (not U).</p></details></div>
+
+<div class="q"><p><strong>Q12.</strong> Why is "Non-repudiation" a threat in LINDDUN, while "Repudiation" is a threat in STRIDE? </p>
+<details><summary>Show answer</summary>
+<p>STRIDE is about security: the attacker denies having done something (a threat to accountability). LINDDUN is about privacy: if every action is recorded so the subject cannot deny it, plausible deniability is lost, which harms privacy.</p></details></div>
+
+<div class="q"><p><strong>Q13.</strong> List the seven required fields of a LINDDUN misuse case, and the five LINDDUN process steps.</p>
+<details><summary>Show answer</summary>
+<p>Misuse case: summary; assets, stakeholders and threats; primary misactor; basic flow; alternative flows; trigger; preconditions. Process: create DFD → threat enumeration (per-element + filtering, then threat trees) → misuse case → risk assessment (DREAD/OCTAVE) → remediation.</p></details></div>
+
+<div class="q"><p><strong>Q14.</strong> What does the Attack Library step contribute, and why is it done continuously rather than once?</p>
+<details><summary>Show answer</summary>
+<p>It makes abstract STRIDE threats concrete (adds the "how"), so attack trees and countermeasures are accurate rather than aimed at threats that can't happen. It's time-consuming and vulnerabilities are constantly updated, so it must be maintained throughout the threat-modeling process.</p></details></div>
+</section>
+
+<section id="w5">
+<h2>Week 5 — SPARTA</h2>
+
+<div class="q"><p><strong>Q1.</strong> Give two problems of manual threat modeling and how automation addresses each.</p>
+<details><summary>Show answer</summary>
+<p>(1) Costly, and earlier results are almost impossible to reuse when the system is improved → automated modeling lets you reuse results and re-evaluate the improved design. (2) Inconsistent records between analysts make it hard to trace which solution mitigates which threat → a catalog that forces all required information gives traceability between threats and solutions.</p></details></div>
+
+<div class="q"><p><strong>Q2.</strong> Give three reasons threat modeling must be repeated rather than done once.</p>
+<details><summary>Show answer</summary>
+<p>New vulnerabilities appear during development; a countermeasure's effectiveness changes over time (e.g., 10→5 may become 10→8 with faster CPUs/AI); and a countermeasure itself changes the attack surface and can become a new attack target. Repeat until no threat is exploitable within realistic time/cost.</p></details></div>
+
+<div class="q"><p><strong>Q3.</strong> State two limitations of MS-TMT's solution modeling and the 20% finding.</p>
+<details><summary>Show answer</summary>
+<p>Solution details can't be expressed, and what can be expressed is biased toward encryption (made abstract so non-security developers can use it). Entering what little solution info exists removes about <strong>20% of threats early</strong>, but you can't tell which info caused the removal, can't compare solutions' efficiency, and the DFD itself doesn't hold the solution info.</p></details></div>
+
+<div class="q"><p><strong>Q4.</strong> What were SPARTA's two core ideas, and what is the difference from MS-TMT?</p>
+<details><summary>Show answer</summary>
+<p>(1) Extend the DFD metamodel to hold threat and solution information (Role, RoleBinding, Solution, CounterMeasure, ThreatType). (2) Define threat and solution patterns. Unlike MS-TMT, solutions are applied directly in the DFD model and tracked to the threats they mitigate.</p></details></div>
+
+<div class="q"><p><strong>Q5.</strong> Describe the tracing chain from a DFD element to a threat in SPARTA, using SecurePipe as an example.</p>
+<details><summary>Show answer</summary>
+<p>DFD element → RoleBinding to a Role (Client/Server/Flow) → the Solution (SecurePipe) that defines those roles → its CounterMeasures (AuthN, MAC, Enc) → the ThreatTypes mitigated (Spoofing, Tampering, Information Disclosure). Roles are based on function (requester = Client, responder = Server), not on names.</p></details></div>
+
+<div class="q"><p><strong>Q6.</strong> Classify as false negative, false positive, or duplicate: (a) only DB-itself threats considered, so threats from DB query requests are missed; (b) a mapping table generates a threat that can't occur in the real environment; (c) one tampering threat is recorded at the data flow, the sending process, and the receiving process.</p>
+<details><summary>Show answer</summary>
+<p>(a) False negative; (b) false positive; (c) duplicate.</p></details></div>
+
+<div class="q"><p><strong>Q7.</strong> Name the five kinds of information SPARTA uses for threat elicitation, and explain what Controlled Natural Language (CNL) is used for.</p>
+<details><summary>Show answer</summary>
+<p>Information (data types), Operation, Countermeasure, Attack, Action. CNL = natural language written in a fixed template; weakness descriptions (e.g., CWE) are first converted into the five-part template, then modeled as a VIATRA pattern, so that different people don't define inconsistent or erroneous patterns.</p></details></div>
+
+<div class="q"><p><strong>Q8.</strong> Describe the Stored XSS pattern in terms of DFD elements.</p>
+<details><summary>Show answer</summary>
+<p>External entity 1 (attacker) → process(es) → <strong>data store</strong> (shared) → process(es) → external entity 2 (normal user), with no tampering mitigation on the attacker's flow. The two entities differ; the processes may be the same; the data store must be common.</p></details></div>
+
+<div class="q"><p><strong>Q9.</strong> Write the SPARTA risk formulas, then compute: PoA = 0.5, CF = 4, TC = 7, S = 5, CB = 0, RP = 0.5, AV = 1000, DTS = 2, NR = 10, DST = 3, NDS = 5.</p>
+<details><summary>Show answer</summary>
+<p>Risk = LEF × LM; LEF = TEF × V × RP; TEF = PoA × CF; V = Max(CD, CB); CD = 1 if TC ≥ S else 0; LM = AV + PV; PV = DTS × NR × DST × NDS.</p>
+<p>TEF = 0.5 × 4 = 2. CD: TC(7) ≥ S(5) → 1; V = Max(1, 0) = 1. LEF = 2 × 1 × 0.5 = 1. PV = 2 × 10 × 3 × 5 = 300; LM = 1000 + 300 = 1300. <strong>Risk = 1 × 1300 = 1300</strong>. If S were 9, CD = 0, V = 0, so Risk = 0.</p></details></div>
+
+<div class="q"><p><strong>Q10.</strong> What is Monte Carlo simulation, and how does SPARTA use it?</p>
+<details><summary>Show answer</summary>
+<p>Repeatedly generating random values from a probability model, simulating with them, and finding the probability distribution of the answer. SPARTA models inputs (S, TC, CF, PoA, ...) as distributions and combines them up the risk tree to get a distribution of risk, which it uses to prioritize threats and show how much risk a solution removes.</p></details></div>
+</section>
+
+<section id="mixed">
+<h2>Mini case study (combine Weeks 3–5)</h2>
+<div class="q"><p>A smart-door-lock app: the <strong>Owner</strong> (phone) sends an unlock command to the <strong>Cloud server</strong> (process), which checks the <strong>Accounts DB</strong> (data store) and relays the command to the <strong>Lock</strong> (device, outside your scope). The attacker is on the internet. The trust boundary separates the phone from the cloud.</p>
+<p><strong>(a)</strong> List the DFD elements and their types. <strong>(b)</strong> Which flows deserve the most attention, and why? <strong>(c)</strong> Write two concrete spoofing/tampering threats on the phone→cloud flow if the attack library says: "T1: replay of captured unlock packets" and "T2: default admin credentials". <strong>(d)</strong> Draw an attack tree for the goal "unlock the door without the owner". <strong>(e)</strong> Which mitigation types apply to each leaf?</p>
+<details><summary>Show model answer</summary>
+<p><strong>(a)</strong> External entities: Owner, Lock (outside the analysis scope, depending on what you analyze; if the Lock is in scope, make it a process). Processes: Cloud server (and the DBMS if drawn separately). Data store: Accounts DB. Data flows: Owner→Cloud (unlock request), Cloud→DB (query), DB→Cloud (result), Cloud→Lock (command). Trust boundary between the phone and the cloud.</p>
+<p><strong>(b)</strong> The Owner→Cloud flow crosses the trust boundary and faces the internet, so attacks concentrate there; analyze it in more detail (and the Cloud→Lock flow if it crosses another boundary).</p>
+<p><strong>(c)</strong> Spoofing: attacker replays a captured unlock packet to impersonate the owner (T1). Elevation of privilege/spoofing: attacker logs in with default admin credentials (T2). Tampering: modify the unlock request in transit if the channel is unencrypted (potential threat even without a matching library entry).</p>
+<p><strong>(d)</strong> Root: unlock without owner = <strong>OR</strong>( A: send a forged unlock command = <strong>AND</strong>(obtain a valid command — via replay OR default credentials; reach the cloud interface), B: tamper with the Cloud→Lock command in transit ). Draw AND with an arc, OR with no mark.</p>
+<p><strong>(e)</strong> Replay → mitigate (nonces/timestamps, encrypted channel); default credentials → eliminate the default account/force change (mitigation or elimination); tampering in transit → mitigate (MAC/encryption). Accepting is only appropriate for low risks; transfer is e.g. insurance for residual risk.</p></details></div>
+</section>
+
+</main>
+
+<footer>
+  Practice questions written from the Week 2–5 slides and lecture notes — for exam review use.
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('toggleAll');
+  var open = false;
+  btn.addEventListener('click', function(){
+    open = !open;
+    var els = document.querySelectorAll('details');
+    for (var i = 0; i < els.length; i++) { els[i].open = open; }
+  });
+})();
+</script>
+
+</body>
+</html>
