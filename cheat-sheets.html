@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheat Sheets — Weeks 2–5</title>
+<style>
+  :root{
+    --maroon:#7a1f2b;
+    --tan:#c9b79c;
+    --ink:#242021;
+    --paper:#fdfbf8;
+    --card:#ffffff;
+    --note-bg:#fbf3e7;
+    --note-border:#d9a441;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  header{
+    background:linear-gradient(120deg,var(--maroon),#5a151d);
+    color:#fff;
+    padding:2.5rem 2rem 2rem;
+  }
+  header h1{margin:0 0 .3rem;font-size:1.8rem;}
+  header p{margin:0;opacity:.9;font-size:.95rem;}
+  nav{
+    background:#efe6d8;
+    padding:.8rem 2rem;
+    position:sticky;
+    top:0;
+    z-index:10;
+    border-bottom:3px solid var(--maroon);
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  nav a{
+    color:var(--maroon);
+    text-decoration:none;
+    font-weight:600;
+    margin-right:1.1rem;
+    font-size:.87rem;
+  }
+  nav a:hover{text-decoration:underline;}
+  main{max-width:920px;margin:0 auto;padding:2rem;}
+  section{margin-bottom:2.8rem;}
+  h2{
+    color:var(--maroon);
+    border-bottom:3px solid var(--tan);
+    padding-bottom:.4rem;
+    font-size:1.4rem;
+  }
+  h3{color:#5a151d;font-size:1.12rem;margin-top:1.4rem;}
+  h4{color:#5a151d;font-size:1rem;margin-top:1rem;margin-bottom:.4rem;}
+  .card{
+    background:var(--card);
+    border:1px solid #e6ddcf;
+    border-radius:10px;
+    padding:1.2rem 1.4rem;
+    margin:1rem 0;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  ul{padding-left:1.3rem;}
+  li{margin-bottom:.35rem;}
+  ol{padding-left:1.3rem;}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.9rem;}
+  th,td{border:1px solid #ddd0ba;padding:.5rem .65rem;text-align:left;vertical-align:top;}
+  th{background:var(--tan);color:#3a2c1a;}
+  tr:nth-child(even) td{background:#faf6ef;}
+  code{background:#f0ece3;padding:.1rem .35rem;border-radius:4px;font-size:.88rem;}
+
+  .keypoint{
+    background:var(--note-bg);
+    border-left:5px solid var(--note-border);
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .keypoint .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#8a5a10;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .keypoint .tag::before{content:"⭐ ";}
+  .example{
+    background:#eef6ee;
+    border-left:5px solid #4d8a5c;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .example .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2c6b3a;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .example .tag::before{content:"🧩 ";}
+  .warn{
+    background:#fbeaea;
+    border-left:5px solid #b5473f;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .warn .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#9c352d;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .warn .tag::before{content:"⚠ ";}
+  .term{font-weight:700;color:var(--maroon);}
+  .stage-badge{
+    display:inline-block;
+    background:var(--maroon);
+    color:#fff;
+    border-radius:20px;
+    padding:.15rem .8rem;
+    font-size:.8rem;
+    font-weight:700;
+    margin-right:.5rem;
+  }
+  footer{
+    text-align:center;
+    color:#8a7a5e;
+    font-size:.85rem;
+    padding:2rem 0;
+  }
+
+  .lecture{
+    background:#fbf3e7;
+    border-left:5px solid #d9a441;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .lecture .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#8a5a10;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .lecture .tag::before{content:"🎙 ";}
+  .qa{
+    background:#eef3f6;
+    border-left:5px solid #4d7ea8;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .qa .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2f5c80;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .qa .tag::before{content:"💬 ";}
+  .examtip{
+    background:#fff4d6;
+    border:2px solid #d9a441;
+    border-radius:8px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .examtip .tag{
+    display:inline-block;
+    font-weight:800;
+    color:#7a1f2b;
+    margin-bottom:.5rem;
+    font-size:.88rem;
+    text-transform:uppercase;
+  }
+  .examtip .tag::before{content:"🎯 ";}
+  .timestamp{color:#8a7a5e;font-size:.8rem;font-style:italic;}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;}
+  .box{background:#fff;border:1px solid #e6ddcf;border-radius:8px;padding:.7rem .9rem;font-size:.86rem;}
+  .box.wide{grid-column:1 / -1;}
+  .box h4{margin:.1rem 0 .4rem;color:#7a1f2b;font-size:.95rem;border-bottom:1px solid #e6ddcf;padding-bottom:.2rem;}
+  .box h4:not(:first-child){margin-top:.7rem;}
+  .box ul{margin:.2rem 0;padding-left:1.1rem;}
+  .box li{margin-bottom:.25rem;}
+  .box p{margin:.3rem 0;}
+  .box table{font-size:.82rem;margin:.4rem 0;}
+  .box th,.box td{padding:.3rem .45rem;}
+  @media (max-width:800px){.grid{grid-template-columns:1fr;}}
+  @media print{
+    nav,.backbar{display:none;}
+    header{padding:.8rem 1rem;}
+    header h1{font-size:1.3rem;}
+    body{background:#fff;}
+    main{padding:.5rem;max-width:none;}
+    .sheet{page-break-before:always;margin:0;}
+    .sheet:first-of-type{page-break-before:auto;}
+    h2{font-size:1.1rem;margin:.2rem 0 .5rem;}
+    .box{font-size:.72rem;padding:.4rem .55rem;break-inside:avoid;}
+    .box table{font-size:.68rem;}
+    .grid{gap:.4rem;}
+    footer{display:none;}
+  }
+</style>
+</head>
+<body>
+<p class="backbar" style="margin:0;padding:.5rem 2rem;background:#efe6d8;font-size:.85rem"><a href="index.html" style="color:#7a1f2b;text-decoration:none;font-weight:600">&larr; Back to Notes Hub</a></p>
+<header>
+  <h1>Cheat Sheets — Weeks 2–5</h1>
+  <p>One compact page per week for last-day review. Use your browser's Print / Save as PDF: each week prints on its own page.</p>
+</header>
+
+<nav>
+  <a href="#c2">Week 2</a>
+  <a href="#c3">Week 3</a>
+  <a href="#c4">Week 4</a>
+  <a href="#c5">Week 5</a>
+</nav>
+
+<main>
+
+<!-- ============================ WEEK 2 ============================ -->
+<section id="c2" class="sheet">
+<h2>Week 2 — SDLC Models</h2>
+<div class="grid">
+
+<div class="box"><h4>Basics</h4>
+<ul>
+<li><b>SDLC</b> = scientific, systematic approach to develop, operate, maintain software. <b>Secure SDLC</b> adds: risk assessment → threat modeling &amp; design review → static analysis → security testing &amp; code review → security assessment &amp; secure configuration.</li>
+<li><b>Software crisis:</b> HW cost down, SW cost up. Symptoms: delays, cost overrun, malfunction, hard maintenance. Causes: engineer shortage, management unaware, no methods/tools, complexity.</li>
+<li><b>Ariane 5 (1996):</b> 64-bit → 16-bit conversion overflow, no exception handling.</li>
+<li><b>Humphrey:</b> software quality is governed by process quality (CMM(i)).</li>
+<li>3 core activities: requirements spec · design &amp; implementation · verification &amp; validation.</li>
+</ul></div>
+
+<div class="box"><h4>Timeline</h4>
+<p>1950s Build&amp;Fix · 1970 Waterfall · 1982 Prototype · 1986 V · 1989 Spiral · 1995 Scrum · 1998 Unified · 1999 XP · 2004 Kanban (software)</p>
+<h4>Cycle length</h4>
+<p>Waterfall/defense ≈ yearly · automotive V-model ≈ many months–1 yr · MS SDL 6–12 mo · Agile sprint 1–4 wk (whole cycle ≈ 1–2 mo)</p></div>
+
+<div class="box wide"><h4>Models at a glance</h4>
+<table>
+<tr><th>Model</th><th>Idea</th><th>Good for</th><th>Weakness</th></tr>
+<tr><td>Build &amp; Fix</td><td>Code, then fix until satisfied</td><td>Tiny projects</td><td>No docs/process; can't split work; can't track progress</td></tr>
+<tr><td>Waterfall</td><td>Sequential stages with feedback between</td><td>Stable requirements</td><td>Late visible results; late fixes cost exponentially</td></tr>
+<tr><td>Prototype</td><td>Build prototype → evaluate → refine requirements</td><td>Unclear requirements</td><td>Prototype treated as product; scope/cost unclear</td></tr>
+<tr><td>V-model</td><td>Waterfall + a test level per phase</td><td>Strong QA needs</td><td>Still sequential; all tests take code as input</td></tr>
+<tr><td>Spiral</td><td>Plan → risk analysis → develop → evaluate, repeated</td><td>Large, high-risk</td><td>Long, needs risk experts</td></tr>
+<tr><td>Agile</td><td>Short iterations, accept change</td><td>Changing requirements</td><td>Needs team discipline</td></tr>
+</table>
+<p><b>Spiral "risk"</b> = project risk (turnover, requirement change, budget/time overrun), <i>not</i> vulnerability count.</p></div>
+
+<div class="box"><h4>V-model pairing</h4>
+<p>Requirements ↔ <b>System</b> test · Architecture ↔ <b>Integration</b> test · Module design ↔ <b>Unit</b> test · then <b>Acceptance</b> test.</p>
+<h4>Verification vs Validation</h4>
+<table>
+<tr><th></th><th>Verification</th><th>Validation</th></tr>
+<tr><td>Question</td><td>Building it <b>right</b>?</td><td>Building the <b>right</b> product?</td></tr>
+<tr><td>Checks</td><td>Work products: plans, specs, design, code, test cases</td><td>The actual software</td></tr>
+<tr><td>Activity</td><td>Reviews, walkthroughs, inspections</td><td>Testing</td></tr>
+</table>
+<p>System test = dev lab environment; Acceptance test = real environment, checks satisfaction.</p></div>
+
+<div class="box"><h4>Agile / Scrum</h4>
+<ul>
+<li><b>Manifesto:</b> people &amp; interaction &gt; process &amp; tools · working software &gt; documents · customer collaboration &gt; contract · responding to change &gt; plan.</li>
+<li><b>Roles:</b> Scrum Master (remove blockers, run events) · Product Owner (own/prioritize Product Backlog) · Dev Team.</li>
+<li><b>Backlogs:</b> Product Backlog = customer wish list; Sprint Backlog = items chosen for this sprint.</li>
+<li><b>Epic</b> (spans sprints) → <b>User Story</b> (smallest user requirement) → <b>Task</b>; <b>Story point</b> = relative effort.</li>
+<li><b>Sprint</b> 1–4 wks · <b>Sprint Planning</b> = kickoff (who/what/how) · <b>Daily Scrum</b> ≈15 min standing: yesterday / today / blockers · <b>Review</b> ≤4 h = validation w/ customer · <b>Retrospective</b> = amplify strengths, log issues, compare est. vs actual velocity.</li>
+<li><b>Burndown:</b> remaining work vs days; dotted = plan, solid = actual.</li>
+<li><b>Kanban:</b> from Toyota parts bins; visual board of task status; 5 principles.</li>
+</ul></div>
+
+<div class="box wide"><h4>XP's 12 rules</h4>
+<p>User Stories · Small Releases · Metaphor · Collective Ownership · Coding Standard · Simple Design · Refactoring · Testing (TDD) · Pair Programming · Continuous Integration · 40-hour week (slide: ≤45h) · On-site Customer. <b>XP ≈ disciplined Build &amp; Fix.</b></p>
+<h4>Fault / Error / Failure</h4>
+<p><b>Fault</b> = wrong code · <b>Error</b> = wrong internal state caused by it · <b>Failure</b> = wrong observable output. A fault may exist without error/failure for some inputs (y=2x vs y=x²: x=2 hides it, x=1 exposes it).</p></div>
+
+</div>
+</section>
+
+<!-- ============================ WEEK 3 ============================ -->
+<section id="c3" class="sheet">
+<h2>Week 3 — MS-SDL</h2>
+<div class="grid">
+
+<div class="box"><h4>Overview</h4>
+<ul>
+<li>13-stage process for security &amp; privacy; revised twice a year (Jan/Jul); ~12-month cycle; credited with 50%+ fewer vulnerabilities. Not suited to 4–5 month cycles.</li>
+<li><b>Recommendation</b> = optional; <b>Requirement</b> = must, with a way to verify.</li>
+<li>Stages 1–5 covered: Training · Project Inception · Design best practices · Product Risk Assessment · Risk Analysis. (6–13: security docs, secure coding, secure testing, security push, FSR, response plan, release, execute response.)</li>
+</ul></div>
+
+<div class="box"><h4>Stage 1–2</h4>
+<ul>
+<li><b>Training:</b> everyone attends security training at least yearly; attendance logged; managers must attend.</li>
+<li><b>Must follow SDL:</b> enterprise-common products · regularly handles PII · regularly sends/receives internet data · auto-downloads updates.</li>
+<li><b>4 tasks:</b> appoint Security Advisor · build security leadership team · bug tracker with security/privacy fields · set the <b>Bug Bar</b> (fix Critical, Important, Moderate before release).</li>
+</ul></div>
+
+<div class="box wide"><h4>Stage 3 — 12 secure design principles</h4>
+<table>
+<tr><td><b>Economy of Mechanism</b> — keep small &amp; simple</td><td><b>Fail-safe Defaults</b> — deny unless granted</td><td><b>Complete Mediation</b> — check every access</td></tr>
+<tr><td><b>Open Design</b> — no security by obscurity (Kerckhoffs: secret = key)</td><td><b>Separation of Privilege</b> — R/W/X separate</td><td><b>Least Privilege</b> — minimum needed</td></tr>
+<tr><td><b>Least Common Mechanism</b> — minimize shared resources</td><td><b>Psychological Acceptability</b> — easy to use (XP SP2: security/usability/compat)</td><td><b>Design by Contract</b> — pre/post-condition, invariant</td></tr>
+<tr><td><b>Not Bolt-on, Built-in</b> — design it in</td><td><b>Defense in Depth</b> — layered controls</td><td><b>Effective Logging</b> — traceable events</td></tr>
+</table>
+<p><b>Attack surface</b> = entry points an attacker can use. <b>ASR 3 steps:</b> ① needed by ≥80% of users? else default off (IIS 6 off vs IIS 5 on) ② who/where can access? (Sasser) ③ reduce privileges (non-admin, not Local System).</p></div>
+
+<div class="box"><h4>Stage 4 — Risk assessment</h4>
+<p>Decide which parts need threat modeling, design review, pen test, and fuzz scope. Security risk assessment questions (OS, default install, ActiveX, auth, first version?) + privacy impact assessment.</p></div>
+
+<div class="box"><h4>Stage 5 — Threat modeling flow</h4>
+<p>① usage scenarios ② external dependencies ③ security assumptions ④ external security notes ⑤ DFD ⑥ threat types ⑦ identify threats ⑧ risk ⑨ mitigation.</p>
+<p><b>DFD:</b> External Entity · Process · Data Flow · Data Store · Trust Boundary. Layers: 0 context (all) · 1 (most) · 2 (highly sensitive) · 3 (critical/kernel).</p></div>
+
+<div class="box"><h4>STRIDE</h4>
+<table>
+<tr><td>Spoofing</td><td>Authentication</td></tr>
+<tr><td>Tampering</td><td>Integrity</td></tr>
+<tr><td>Repudiation</td><td>Non-repudiation</td></tr>
+<tr><td>Info disclosure</td><td>Confidentiality</td></tr>
+<tr><td>Denial of service</td><td>Availability</td></tr>
+<tr><td>Elevation of privilege</td><td>Authorization</td></tr>
+</table></div>
+
+<div class="box"><h4>DREAD &amp; mitigation</h4>
+<ul>
+<li><b>DREAD:</b> Damage · Reproducibility · Exploitability · Affected users · Discoverability; score each, average. <b>Dropped by MS in 2008</b> (subjective, inconsistent) → Bug Bar from MSRC.</li>
+<li><b>Mitigation 2023:</b> Mitigation · Transfer · Acceptance · Elimination. (2011: warn user · remove feature · technical mitigation.)</li>
+<li><b>Maturity:</b> 0/1 none or outdated · 2 OK (minimum) · 3 Good (pen-tested) · 4 Excellent (all STRIDE + docs).</li>
+</ul></div>
+
+</div>
+</section>
+
+<!-- ============================ WEEK 4 ============================ -->
+<section id="c4" class="sheet">
+<h2>Week 4 — STRIDE &amp; LINDDUN</h2>
+<div class="grid">
+
+<div class="box"><h4>STRIDE process</h4>
+<p>① DFD → ② Attack Library → ③ Threat enumeration → ④ Attack tree → ⑤ Remediation → ⑥ Risk (DREAD, = prioritization).</p>
+<ul>
+<li><b>DFD quality:</b> <b>Completeness</b> (all real functions in the model) · <b>Soundness</b> (meaning close to the real system). No single "correct" DFD.</li>
+<li><b>Trust boundary:</b> where required privilege changes; attacks concentrate on flows crossing it. May assume inside is safe (documented assumption) or not.</li>
+<li><b>DBMS = process; its storage = data store.</b> External entity = everything outside analysis scope.</li>
+</ul></div>
+
+<div class="box"><h4>Attack Library sources</h4>
+<ul>
+<li><b>CVE</b> = flaws in specific products (+ <b>CPE</b> = which products affected)</li>
+<li><b>CWE</b> = weakness types</li>
+<li><b>CAPEC</b> = attack patterns exploiting weaknesses</li>
+<li><b>ATT&amp;CK</b> = tactics (goals) + techniques (methods) from real attacks; ordered, so also useful for scenarios</li>
+</ul>
+<p>Purpose: make abstract threats concrete (add the "how"). Keep it updated through the whole process. Filter entries by what your product really uses. <b>No match ≠ impossible → "potential threat".</b> Count may rise after concretizing. <b>Given in the exam.</b></p></div>
+
+<div class="box wide"><h4>STRIDE-per-element</h4>
+<table>
+<tr><th>Element</th><th>S</th><th>T</th><th>R</th><th>I</th><th>D</th><th>E</th><th>#</th></tr>
+<tr><td>External entity</td><td>●</td><td></td><td>●</td><td></td><td></td><td></td><td>2</td></tr>
+<tr><td>Process</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>6</td></tr>
+<tr><td>Data store</td><td></td><td>●</td><td>△</td><td>●</td><td>●</td><td></td><td>3 (4 w/ logs)</td></tr>
+<tr><td>Data flow</td><td></td><td>●</td><td></td><td>●</td><td>●</td><td></td><td>3</td></tr>
+</table>
+<p><b>Per-element:</b> fast, simple, abstract, misses interaction threats. <b>Per-interaction:</b> concrete (brainstorm per element pair), slower, depends on knowledge; MS-TMT uses it via patterns.</p></div>
+
+<div class="box"><h4>Attack tree</h4>
+<ul>
+<li>Root = final goal; leaves = detailed methods; parent = goal, children = conditions/methods. Top-down or bottom-up.</li>
+<li><b>AND</b> = arc/line across edges (all needed); <b>OR</b> = no mark (any one).</li>
+<li><b>Blocking:</b> AND → block <i>one</i> child; OR → block <i>all</i> children. Compare cost, reuse existing functions.</li>
+<li>Sequential AND = ordered AND (not needed). One tree per attacker goal.</li>
+</ul></div>
+
+<div class="box"><h4>DREAD anchors</h4>
+<p>Damage: 0 none · 5 user data · 10 system destroyed. Reproducibility: 10 = browser only. Exploitability: 10 = browser basics. Affected users: 10 = all. Discoverability: 10 = easy in a browser, 9 = on Shodan.</p></div>
+
+<div class="box wide"><h4>LINDDUN (privacy)</h4>
+<table>
+<tr><th>Threat</th><th>Violates</th></tr>
+<tr><td><b>L</b>inkability</td><td>Unlinkability</td></tr>
+<tr><td><b>I</b>dentifiability</td><td>Anonymity / pseudonymity</td></tr>
+<tr><td><b>N</b>on-repudiation</td><td>Plausible deniability <i>(opposite meaning to STRIDE's Repudiation)</i></td></tr>
+<tr><td><b>D</b>etectability</td><td>Undetectability / unobservability</td></tr>
+<tr><td>information <b>D</b>isclosure</td><td>Confidentiality</td></tr>
+<tr><td>content <b>U</b>nawareness</td><td>Content awareness</td></tr>
+<tr><td>policy &amp; consent <b>N</b>on-compliance</td><td>Policy &amp; consent compliance</td></tr>
+</table>
+<ul>
+<li><b>Per-element:</b> external entity = L, I, U · process / data flow / data store = L, I, N, D, D, N-compliance.</li>
+<li><b>Process:</b> DFD → enumeration (per-element, filter, <b>threat trees</b>) → <b>misuse case</b> → risk (DREAD / OCTAVE) → remediation.</li>
+<li><b>Misuse case (7):</b> summary · assets/stakeholders/threats · primary misactor · basic flow · alternative flows · trigger · preconditions.</li>
+<li><b>Hard privacy</b> = untrusted third parties, data minimization; <b>soft privacy</b> = honest data holder, consent/purpose.</li>
+</ul></div>
+
+</div>
+</section>
+
+<!-- ============================ WEEK 5 ============================ -->
+<section id="c5" class="sheet">
+<h2>Week 5 — SPARTA</h2>
+<div class="grid">
+
+<div class="box"><h4>Manual vs automated</h4>
+<ul>
+<li><b>Manual:</b> costly; earlier results nearly impossible to reuse; inconsistent records make solution↔threat causality hard to trace; DFD over-drawing = analysis paralysis.</li>
+<li><b>Automated:</b> reuse results → re-evaluate improved designs; catalog of required info → traceability; evaluate solutions against changing attacker models.</li>
+<li><b>Why hard:</b> When (as early as possible) · What (no standard artifact: DFD, state diagram) · How (repeat across all SDLC phases).</li>
+<li><b>Why repeat:</b> new vulnerabilities · mitigation strength changes (10→5 may become 10→8) · countermeasures change the attack surface (they can be attacked too).</li>
+</ul></div>
+
+<div class="box"><h4>MS-TMT limits</h4>
+<ul>
+<li>STRIDE-based; can't express solution details; solutions biased to encryption (designed for non-security developers).</li>
+<li>Entering solution info removes ~<b>20%</b> of threats early, but you can't tell why, can't compare solutions, and the DFD holds no solution info.</li>
+<li>Can't express security assumptions in a structured way.</li>
+</ul></div>
+
+<div class="box"><h4>SPARTA stack</h4>
+<p><b>Sirius</b> (DFD editor) · <b>VIATRA</b> (threat elicitation patterns) · <b>Extended FAIR</b> (risk) on an <b>EMF</b> metamodel. Built by the LINDDUN team (used on European aviation systems).</p>
+<p><b>Two core ideas:</b> ① extended DFD metamodel with threat &amp; solution info ② threat and solution patterns.</p></div>
+
+<div class="box"><h4>Extended DFD &amp; Role chain</h4>
+<p>DFD element → <b>RoleBinding</b> → <b>Role</b> (Client = requester, Server = responder; by function, not name) → <b>Solution</b> (e.g., SecurePipe) → <b>CounterMeasure</b> (AuthN, MAC, Enc) → <b>ThreatType</b> (Spoofing, Tampering, Info disclosure).</p>
+<p>Solutions are applied directly in the DFD, so "which solution mitigates which threat" is tracked automatically.</p></div>
+
+<div class="box"><h4>Threat elicitation</h4>
+<ul>
+<li>Element-only problems: <b>false negative</b> (missed, e.g., DB query threats) · <b>false positive</b> (can't occur) · <b>duplicates</b> (same threat at flow + sender + receiver).</li>
+<li><b>5 inputs:</b> Information · Operation · Countermeasure · Attack · Action.</li>
+<li>Natural-language weakness → template (<b>CNL</b>) → VIATRA pattern. <b>Stored XSS:</b> entity → process → <b>shared data store</b> → process → other entity, no tampering mitigation.</li>
+</ul></div>
+
+<div class="box wide"><h4>Risk formulas (Extended FAIR) + Monte Carlo</h4>
+<p><code>Risk = LEF × LM</code> · <code>LEF = TEF × V × RP</code> · <code>TEF = PoA × CF</code> · <code>V = Max(CD, CB)</code> · <code>CD = 1 if TC ≥ S else 0</code> · <code>LM = AV + PV</code> · <code>PV = DTS × NR × DST × NDS</code></p>
+<p>LEF loss event freq · LM loss magnitude · TEF threat event freq (attempts) · V vulnerability · RP retention period · PoA probability of action · CF contact freq · CD countermeasure defeated · CB bypassed · TC threat capability · S strength · AV asset value · PV privacy value · DTS data type sensitivity · NR records · DST data subject type (children = higher) · NDS number of subjects.</p>
+<p><b>Monte Carlo:</b> sample random values from probability models repeatedly → distribution of risk; shows how much a solution cuts risk.</p>
+<p><b>Exam focus:</b> problems of manual threat modeling + how SPARTA extended it (Role, patterns). Risk-formula detail is secondary.</p></div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+  Cheat sheets compiled from the Week 2–5 notes — verify against slides before the exam.
+</footer>
+
+</body>
+</html>
