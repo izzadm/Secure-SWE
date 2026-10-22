@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 5 — SPARTA — Exam Notes</title>
+<style>
+  :root{
+    --maroon:#7a1f2b;
+    --tan:#c9b79c;
+    --ink:#242021;
+    --paper:#fdfbf8;
+    --card:#ffffff;
+    --note-bg:#fbf3e7;
+    --note-border:#d9a441;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  header{
+    background:linear-gradient(120deg,var(--maroon),#5a151d);
+    color:#fff;
+    padding:2.5rem 2rem 2rem;
+  }
+  header h1{margin:0 0 .3rem;font-size:1.8rem;}
+  header p{margin:0;opacity:.9;font-size:.95rem;}
+  nav{
+    background:#efe6d8;
+    padding:.8rem 2rem;
+    position:sticky;
+    top:0;
+    z-index:10;
+    border-bottom:3px solid var(--maroon);
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  nav a{
+    color:var(--maroon);
+    text-decoration:none;
+    font-weight:600;
+    margin-right:1.1rem;
+    font-size:.87rem;
+  }
+  nav a:hover{text-decoration:underline;}
+  main{max-width:920px;margin:0 auto;padding:2rem;}
+  section{margin-bottom:2.8rem;}
+  h2{
+    color:var(--maroon);
+    border-bottom:3px solid var(--tan);
+    padding-bottom:.4rem;
+    font-size:1.4rem;
+  }
+  h3{color:#5a151d;font-size:1.12rem;margin-top:1.4rem;}
+  h4{color:#5a151d;font-size:1rem;margin-top:1rem;margin-bottom:.4rem;}
+  .card{
+    background:var(--card);
+    border:1px solid #e6ddcf;
+    border-radius:10px;
+    padding:1.2rem 1.4rem;
+    margin:1rem 0;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  ul{padding-left:1.3rem;}
+  li{margin-bottom:.35rem;}
+  ol{padding-left:1.3rem;}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.9rem;}
+  th,td{border:1px solid #ddd0ba;padding:.5rem .65rem;text-align:left;vertical-align:top;}
+  th{background:var(--tan);color:#3a2c1a;}
+  tr:nth-child(even) td{background:#faf6ef;}
+  code{background:#f0ece3;padding:.1rem .35rem;border-radius:4px;font-size:.88rem;}
+
+  .keypoint{
+    background:var(--note-bg);
+    border-left:5px solid var(--note-border);
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .keypoint .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#8a5a10;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .keypoint .tag::before{content:"⭐ ";}
+  .example{
+    background:#eef6ee;
+    border-left:5px solid #4d8a5c;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .example .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2c6b3a;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .example .tag::before{content:"🧩 ";}
+  .warn{
+    background:#fbeaea;
+    border-left:5px solid #b5473f;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .warn .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#9c352d;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .warn .tag::before{content:"⚠ ";}
+  .term{font-weight:700;color:var(--maroon);}
+  .stage-badge{
+    display:inline-block;
+    background:var(--maroon);
+    color:#fff;
+    border-radius:20px;
+    padding:.15rem .8rem;
+    font-size:.8rem;
+    font-weight:700;
+    margin-right:.5rem;
+  }
+  footer{
+    text-align:center;
+    color:#8a7a5e;
+    font-size:.85rem;
+    padding:2rem 0;
+  }
+
+  .lecture{
+    background:#fbf3e7;
+    border-left:5px solid #d9a441;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .lecture .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#8a5a10;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .lecture .tag::before{content:"🎙 ";}
+  .qa{
+    background:#eef3f6;
+    border-left:5px solid #4d7ea8;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .qa .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2f5c80;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .qa .tag::before{content:"💬 ";}
+  .examtip{
+    background:#fff4d6;
+    border:2px solid #d9a441;
+    border-radius:8px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .examtip .tag{
+    display:inline-block;
+    font-weight:800;
+    color:#7a1f2b;
+    margin-bottom:.5rem;
+    font-size:.88rem;
+    text-transform:uppercase;
+  }
+  .examtip .tag::before{content:"🎯 ";}
+  .timestamp{color:#8a7a5e;font-size:.8rem;font-style:italic;}
+</style>
+</head>
+<body>
+<p style="margin:0;padding:.5rem 2rem;background:#efe6d8;font-size:.85rem"><a href="index.html" style="color:#7a1f2b;text-decoration:none;font-weight:600">&larr; Back to Notes Hub</a></p>
+<header>
+  <h1>Secure Software Engineering I — Week 5</h1>
+  <p>Automated Threat Modeling Tool: SPARTA — Exam Notes</p>
+</header>
+
+<nav>
+  <a href="#exam">Exam Tips</a>
+  <a href="#why">Why Automate</a>
+  <a href="#tmt">MS-TMT Limits</a>
+  <a href="#arch">SPARTA Architecture</a>
+  <a href="#dfd">1. Extended DFD</a>
+  <a href="#elicit">2. Threat Elicitation</a>
+  <a href="#risk">3. Risk Assessment</a>
+  <a href="#summary">Summary</a>
+</nav>
+
+<main>
+
+<section id="exam">
+<h2>Exam Tips &amp; Logistics (from the lecture recordings)</h2>
+<div class="examtip">
+<span class="tag">What to study</span>
+<ul>
+  <li>The midterm covers material <strong>up to the SPARTA lecture</strong>; the final <strong>includes</strong> the midterm scope.</li>
+  <li>Exam length is <strong>1 hour</strong>, so a question asking you to run the <em>entire</em> threat-modeling process is unlikely. Expect <strong>questions per step</strong> &mdash; review each step of STRIDE and LINDDUN (the lecturer suggested reciting the STRIDE/LINDDUN categories once before the exam).</li>
+  <li><strong>For SPARTA, focus on just this:</strong> (1) the problems of <em>manual</em> threat modeling, (2) how SPARTA automated/traced things, i.e., <strong>how it extended the existing approach</strong> (extended DFD with Roles + threat/solution patterns). The rest is detail.</li>
+  <li>For the Attack Library: it will be <strong>given</strong> &mdash; no memorizing.</li>
+</ul>
+</div>
+<div class="examtip">
+<span class="tag">Exam-day rules the lecturer stated</span>
+<ul>
+  <li><strong>Bring ID:</strong> student ID, driver's license, or resident registration card. A passport is <strong>not</strong> accepted. If you only have mobile ID, you must wait until the exam ends to verify it.</li>
+  <li>Only the essentials on the desk; put drinks away. Pen or pencil both fine &mdash; but <strong>write legibly</strong>, since unreadable answers may be misgraded.</li>
+  <li><strong>Phones off</strong>, and also tablets/smartwatches/alarms: accidental noise or flashing lights that disturb the exam count as cheating. Cheating = automatic zero.</li>
+  <li>Sit with <strong>one empty seat between students</strong>; if someone is next to you, sort it out and one moves.</li>
+  <li><strong>Restroom:</strong> do it before 9:10 (start time). If you truly must leave mid-exam, you submit your answer sheet as final &mdash; no returning.</li>
+  <li>Lateness can carry a penalty (class start was set at 9:10 on purpose to discourage lateness).</li>
+</ul>
+<p style="font-size:.82rem;color:#8a7a5e;margin:.3rem 0 0">Exact exam date/room were announced separately by the department &mdash; check the official notice.</p>
+</div>
+</section>
+
+<section id="why">
+<h2>1. Why Automate Threat Modeling?</h2>
+<div class="card">
+<table>
+<tr><th>Manual threat modeling</th><th>Automated threat modeling</th></tr>
+<tr><td>Costs a lot of time and money; earlier results (effort, deliverables) are <strong>almost impossible to reuse</strong> when the system is later improved</td><td>Earlier results can be <strong>reused</strong> → re-evaluate the improved design</td></tr>
+<tr><td>Inconsistent records between analysts make it hard to see the <strong>causal relationship between solutions and threats</strong></td><td>A <strong>catalog</strong> that forces all required information to be filled in gives <strong>traceability</strong> between threats and solutions</td></tr>
+<tr><td>—</td><td>Identify threats and easily evaluate solution effectiveness against a <strong>dynamically changing attacker model</strong></td></tr>
+</table>
+
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; why manual threat modeling is painful</span>
+<span class="timestamp">Recording: SPARTA, ~05:36&ndash;12:12</span>
+<ul>
+  <li><strong>Time and cost</strong> are the #1 problem of <em>all</em> threat-modeling automation tools. Drawing the DFD itself can cause <strong>analysis paralysis</strong> &mdash; so much effort on modeling that modeling becomes the bottleneck and delays the whole SDL schedule. Building the attack library, identifying threats, and drawing attack trees are also very time-consuming.</li>
+  <li><strong>It is an iterative loop:</strong> threat modeling &rarr; risk analysis (decides mitigation order) &rarr; apply countermeasures to the system model &rarr; re-run threat modeling &hellip; until risks no longer shrink.</li>
+  <li><strong>Why previous results were hard to reuse:</strong> it was hard to <em>see</em> which solution was applied to which system function. Old approach: write requirement IDs (R1) in the requirements spec, then reference them from design items (D1) and so on &mdash; you had to trace through documents. With no documents, someone had to trace through the code by hand.</li>
+  <li><strong>Inconsistent records:</strong> like self-introductions &mdash; two people describing the same thing (which requirement mitigates which threat) will write it differently. So the <strong>causal link between a mitigation and the threat it addresses</strong> was hard to establish and reuse for similar products.</li>
+</ul>
+</div>
+<h3>Why automation is hard (When / What / How)</h3>
+<ul>
+  <li><strong>When:</strong> From which point in the SDLC should security/privacy requirements be considered? → At requirements (re-)elicitation, <em>as early as possible</em>.</li>
+  <li><strong>What:</strong> Which SDLC artifacts should be considered? An artifact describing system structure and behavior is needed, but <strong>no standard or regulation</strong> fixes which one (e.g., data flow diagram, state transition diagram) → hard to know what to reference.</li>
+  <li><strong>How:</strong> Security/privacy analysis is <strong>not one-and-done</strong>; it must be repeated across almost all SDLC phases (requirements → design → implementation → verification).</li>
+</ul>
+
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; "artifact" and why threat modeling must be repeated</span>
+<span class="timestamp">Recording: SPARTA, ~12:12&ndash;18:34</span>
+<ul>
+  <li><strong>Artifact</strong> = any deliverable produced during development (design documents, code, test results ...). If you prefer, think "development documents." The "requirements" to derive can equally be read as "countermeasures." Structure/behavior artifacts are mostly design documents; since no standard fixes which one, data flow diagrams and state diagrams are referenced.</li>
+  <li><strong>Class Q&amp;A &mdash; why repeat threat modeling?</strong> A student answered "new problems keep appearing mid-development." The lecturer added three reasons:
+    <ol>
+      <li><strong>New vulnerabilities</strong> are discovered during the development schedule.</li>
+      <li><strong>Mitigation effectiveness changes over time</strong> &mdash; e.g., a countermeasure meant to reduce risk from 10 to 5 might only reduce it from 10 to 8 after faster CPUs or AI-assisted attacks.</li>
+      <li><strong>Countermeasures change the attack surface</strong> &mdash; a security function you add can itself become a new attack target. So repeat until no further threat can be exploited within a realistic time/cost.</li>
+    </ol>
+  </li>
+</ul>
+</div>
+<h3>Research directions for automation</h3>
+<ul>
+  <li><strong>Extended DFD metamodel:</strong> build a metamodel so earlier results can be reused and the improved design re-evaluated; metamodel information provides <em>traceability</em> of which threat in the system model can be mitigated by which solution.</li>
+  <li><strong>Threat and solution patterns:</strong> automatically analyze how risky a threat is given a dynamically changing system model and attacker; use results to easily evaluate solution effectiveness against threats.</li>
+</ul>
+</div>
+</section>
+
+<section id="tmt">
+<h2>2. Limits of Existing Tools — MS-TMT</h2>
+<div class="card">
+<p><strong>MS-TMT</strong> (Microsoft Threat Modeling Tool) is STRIDE-based. Key weakness: <strong>lacks ways to express security/privacy solutions</strong>.</p>
+<ol>
+  <li>When defining a solution, <strong>details can't be expressed</strong>.</li>
+  <li>Solutions that <em>can</em> be expressed abstractly are <strong>biased toward encryption</strong>.</li>
+</ol>
+<ul>
+  <li>MS-TMT does allow entering some info (e.g., element properties like "Encrypted", "Signed", HTTPS data flow attributes) but it's still insufficient — entering it removes about <strong>20% of threats early</strong>, yet:
+    <ul>
+      <li>It's hard to tell <em>which</em> security information caused a threat to be removed.</li>
+      <li>Comparing efficiency between solutions is limited.</li>
+      <li>The DFD holds no solution information, so other artifacts must be consulted — which may <strong>not match the design (DFD)</strong>.</li>
+      <li>Applying security/privacy solutions needs knowledge from many fields (results may be inconsistent depending on analyst skill).</li>
+    </ul>
+  </li>
+  <li>It also can't express security <strong>information or assumptions</strong> in a structured way. Consequences:
+    <ul>
+      <li>A threat found in past modeling was removed in the current system, but that fact isn't shown in the DFD.</li>
+      <li>A threat was identified earlier but that info isn't in the DFD.</li>
+      <li>Mitigation applied, yet additional threats may still occur.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; why MS-TMT's solution info is so abstract</span>
+<span class="timestamp">Recording: SPARTA, ~20:32&ndash;25:49</span>
+<ul>
+  <li>MS-TMT was designed so that <strong>even people who don't know security</strong> could threat-model with the tool. Developers can usually only answer coarse questions (is it encrypted? signed? stores credentials? stores logs?) &mdash; not details like key length or weak key patterns that you, as security-aware people, would care about.</li>
+  <li>Encryption is <em>visible</em> (encrypted vs not), but access control or auditing can't be judged without a security person &mdash; that's why solutions skew toward encryption and everything else stays abstract. Many people don't even fill the solution fields in.</li>
+  <li><strong>The 20% finding (experimentally shown):</strong> two groups of volunteers got the same DFD; one group also filled in solution information, the other didn't &rarr; <strong>about 20% fewer threats</strong> were identified in the group that entered solution info.</li>
+  <li><strong>Why that matters (scale):</strong> the course example gives roughly 90&ndash;100 threats by STRIDE-per-element. A realistic system has about 150&ndash;200 DFD elements &rarr; roughly <strong>800&ndash;1,000 theoretical threats</strong>, many of which aren't realizable. Entering solution info correctly cuts the number you must analyze.</li>
+  <li><strong>But MS-TMT still can't tell you</strong> <em>which</em> piece of security info removed a threat, nor which of several candidate solutions is more effective, nor show it in the DFD. SPARTA adds solutions to the DFD model and even <strong>simulates how much risk each solution takes off.</strong></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="arch">
+<h2>3. SPARTA — Tool Architecture</h2>
+<div class="card">
+<p>Three components, all built on a shared <strong>meta-model</strong> using the <strong>Eclipse Modeling Framework (EMF)</strong>:</p>
+<table>
+<tr><th>Function</th><th>Technology</th><th>Role</th></tr>
+<tr><td><strong>① DFD model (graphical model editor)</strong></td><td>EMF <strong>Sirius</strong></td><td>Draw the extended DFD (including threat/solution information)</td></tr>
+<tr><td><strong>② Threat elicitation</strong></td><td>EMF <strong>VIATRA</strong></td><td>Automatically derive threats using query patterns</td></tr>
+<tr><td><strong>③ Risk (threat prioritization)</strong></td><td><strong>Extended FAIR</strong> model</td><td>Score and prioritize threats</td></tr>
+</table>
+<p><strong>Workflow:</strong> Model (from diagram; optionally text/code; plus a knowledge base) → Elicitation (using query patterns) → Threat list → Prioritize / Plot / Export (CSV). Results feed back into the model so the design can be refined and re-evaluated.</p>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; background and the two core ideas</span>
+<span class="timestamp">Recording: SPARTA, ~03:48&ndash;05:36 and ~18:34&ndash;20:32</span>
+<ul>
+  <li>Searching "SPARTA" gives two things: this threat-modeling automation tool, and a separate tool/attack library for the <em>space</em> domain. We study the former.</li>
+  <li>Built by the <strong>same research team that developed LINDDUN</strong>; their technical documents say they used SPARTA to threat-model systems at several <strong>European airports/aviation</strong> systems.</li>
+  <li><strong>Two key ideas</strong> to automatically track "which countermeasure/solution was applied to mitigate which threat":
+    <ol>
+      <li><strong>Extend the DFD metamodel</strong> so it can hold threat and security-solution information.</li>
+      <li><strong>Define threat and solution patterns</strong> (rules) so the tool knows which threat can occur at which DFD element and which solution mitigates it.</li>
+    </ol>
+  </li>
+  <li>The <strong>difference from MS-TMT</strong> is exactly this: an extended DFD metamodel + separately defined threat and solution patterns.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="dfd">
+<h2>4. ① Extended DFD Model</h2>
+<div class="card">
+<ul>
+  <li>A normal DFD model = an abstract set of <strong>rules</strong> (attributes, relationships, constraints) needed to describe the behavior and structure of the target.</li>
+  <li>SPARTA's <strong>extended DFD</strong> is developed so the model can also hold <strong>threat and solution information</strong>.</li>
+</ul>
+
+<h3>Key metaclasses</h3>
+<table>
+<tr><th>Metaclass</th><th>Meaning</th></tr>
+<tr><td><strong>DFD elements</strong></td><td>Process, DataStore, ExternalEntity, TrustBoundaryContainer, DataFlow (a DataFlowEntity sends/receives DataFlows)</td></tr>
+<tr><td><strong>ThreatTypeCatalog / ThreatType</strong> (reusable)</td><td>Catalog of threat types (e.g., Spoofing, Tampering, InformationDisclosure)</td></tr>
+<tr><td><strong>SolutionCatalog / Solution / Role</strong> (reusable)</td><td>A <em>Solution</em> (e.g., a secure pipe) defines <em>Roles</em> that elements play (e.g., Server, Client, flows)</td></tr>
+<tr><td><strong>CounterMeasure</strong></td><td>What a solution provides; <em>mitigates</em> ThreatTypes and is <em>realized</em> by Roles</td></tr>
+<tr><td><strong>SolutionInstance / RoleBinding</strong> (model-specific)</td><td>Applying a solution in a concrete DFD: RoleBindings bind catalog Roles to actual DFD elements</td></tr>
+</table>
+
+<div class="example">
+<span class="tag">SecurePipe example from the slides</span>
+<ul>
+  <li>DFD: <em>WebBrowser ↔ WebServer</em> with two data flows (<code>df1</code>, <code>df2</code>).</li>
+  <li>The <strong>SecurePipe solution</strong> has roles <em>Server</em>, <em>Client</em>, <em>Flow1</em>, <em>Flow2</em>.</li>
+  <li>Role bindings map <em>Client → WebBrowser</em>, <em>Server → WebServer</em>, <em>Flow1 → df1</em>, <em>Flow2 → df2</em>.</li>
+  <li>Countermeasures in SecurePipe: <strong>AuthN</strong> → mitigates <em>Spoofing</em>; <strong>MAC</strong> → mitigates <em>Tampering</em>; <strong>Enc</strong> (encryption) → mitigates <em>InformationDisclosure</em>.</li>
+  <li>So from the bound solution, the tool knows which threats in the DFD are covered.</li>
+</ul>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; the "Role" attribute is the trick</span>
+<span class="timestamp">Recording: SPARTA, ~25:49&ndash;33:00 and ~48:28&ndash;51:45</span>
+<ul>
+  <li>The normal DFD metamodel: DFD elements are data flows, data-flow entities (process, data store, external entity), and containers (e.g., trust boundary). On its own, it can't show which solution was applied for which threat.</li>
+  <li>SPARTA adds a <strong>Role</strong> to DFD elements &mdash; the first tool to add a <em>role</em> attribute to the data-flow-entity class. "Not a huge thing" &mdash; it's basically one extra piece of information, but it makes traceability automatic.</li>
+  <li><strong>Role is about function, not the element's name.</strong> The process that requests a service takes the <strong>Client</strong> role; the process that answers takes the <strong>Server</strong> role (client&ndash;server architecture), regardless of whether it's named "web browser" or "web server."</li>
+  <li><strong>Tracking chain:</strong> DFD element &rarr; <em>RoleBinding</em> to a Role &rarr; Solutions applicable to that Role &rarr; each solution's Countermeasure &rarr; the ThreatType it mitigates (e.g., an authentication/access-control countermeasure applicable to the <em>Server</em> role mitigates <strong>Spoofing</strong>). Once you give an element a role, the candidate solutions and the threats they can mitigate are tracked automatically.</li>
+  <li><strong>Old way vs SPARTA:</strong> before, you wrote in a document "countermeasure applied to Process 1, so Process 1's threats are removed" and updated the document each time &mdash; hard to trace, written differently by each person. SPARTA applies the solution <em>directly to the DFD model</em>.</li>
+  <li><strong>Result in the demo:</strong> applying the <strong>SecurePipe</strong> solution to the model automatically dropped the tampering/information-disclosure risk of one flow (Flow 4) to about <strong>0.02</strong>. SPARTA (first made around 2020) was the first to do this kind of tracking; many tools have extended it since, e.g., toward automatic attack tree generation.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="elicit">
+<h2>5. ② Threat Elicitation (VIATRA)</h2>
+<div class="card">
+<h3>Problems with plain element-based identification</h3>
+<p><strong>Pro:</strong> simple — derive threats from a mapping table. <strong>Con:</strong> it ignores <em>which</em> DFD element sends what and in what situation, causing 3 problems:</p>
+<table>
+<tr><th>Problem</th><th>Explanation</th><th>Example</th></tr>
+<tr><td><strong>False Negative</strong></td><td>Possible threats are <strong>missed</strong>: focusing only on the element misses threats from that element's transaction types</td><td>Only DB-itself threats considered → threats from DB request queries are missed</td></tr>
+<tr><td><strong>False Positive</strong></td><td>Threats that <strong>cannot occur</strong> are identified: applying the mapping table without regard to system context</td><td>Threats that can't happen in the real environment are listed</td></tr>
+<tr><td><strong>Duplicates</strong></td><td>Documented threats overlap: ignoring interaction and data direction yields several threats with the same meaning</td><td>—</td></tr>
+</table>
+<p>As designs grow complex, accurately finding threats (flaws) from elements and interactions alone has limits.</p>
+
+<h3>SPARTA uses 5 kinds of information to elicit threats</h3>
+<table>
+<tr><th>Information</th><th>Requirement</th></tr>
+<tr><td><strong>Information</strong></td><td>The <strong>data type</strong> must be specified in the model</td></tr>
+<tr><td><strong>Operation</strong></td><td>Describe how the operations a process performs are carried out</td></tr>
+<tr><td><strong>Countermeasure</strong></td><td>Provide information about the solution</td></tr>
+<tr><td><strong>Attack</strong></td><td>Provide attack methods possible in the system</td></tr>
+<tr><td><strong>Action</strong></td><td>Include the actions needed to detect the threat</td></tr>
+</table>
+
+<div class="example">
+<span class="tag">Example — Security Design Flaw 15: Insecure Data Exposure</span>
+<ul>
+  <li><strong>Description:</strong> data not transferred securely, e.g., a web app using HTTP instead of HTTPS → vulnerable to eavesdropping and MITM.</li>
+  <li><strong>Detection steps:</strong> locate valuable (sensitive) info in the model → track it through the architecture to see where/how it's transferred → at each step check: replay prevented? timestamp/sequence/checksum used? traffic over an encrypted channel (SSL/TLS)?</li>
+  <li><strong>Turned into pseudocode:</strong> for each DFD element and each data type it handles, if the data is sensitive and the element's solution does <em>not</em> protect against tampering <em>or</em> against information disclosure → trigger Design Flaw 15.</li>
+</ul>
+</div>
+
+<div class="example">
+<span class="tag">Example — Stored XSS as a VIATRA pattern</span>
+<p>Detecting flaws like Stored XSS needs complex design information. <strong>Stored XSS:</strong> a hacker (entity 1) uploads a malicious script (data) through process(es) to the server's data store, and it is later delivered to a normal user (entity 2).</p>
+<ul>
+  <li>VIATRA pattern (<code>xssflaw</code>): ExternalEntity e1, e2; DataStore ds; Process p1; <code>find</code> communication(e1, df, p1); <code>neg find</code> mitigation(p1, df, "Tampering") (i.e., no tampering mitigation); <code>find</code> FlowTo+(p1, ds) and FlowTo+(ds, e2) (the + means a path of one or more flows).</li>
+</ul>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; "duplicate" threats explained</span>
+<span class="timestamp">Recording: SPARTA, ~33:00&ndash;35:50</span>
+<p>Example: a tampering threat on a data flow. One analyst records tampering at the <em>data flow</em>; another says the sending <em>process</em> is responsible, so records it there too; a third also blames the receiving process. Now one threat appears in three places &mdash; same threat, listed at where it happens, what causes it, and what it affects. In a complex design, such false/duplicate results <strong>explode in number</strong>. That's why SPARTA moves from "one element &rarr; one threat" rules to <strong>richer patterns over several DFD elements and their data flow</strong>.</p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; Controlled Natural Language (CNL) &rarr; VIATRA pattern</span>
+<span class="timestamp">Recording: SPARTA, ~35:50&ndash;47:17</span>
+<ul>
+  <li>Weakness descriptions (e.g., CWE) are written in <strong>natural language</strong>, and different people describe the same thing differently. If each person turned them straight into tool patterns, patterns would vary and contain errors.</li>
+  <li>SPARTA's fix: first extract the <strong>5 pieces of information</strong> (Information, Operation, Countermeasure, Attack/how, Action) into a <strong>template</strong> &rarr; a <strong>Controlled Natural Language (CNL)</strong> / template-based description &rarr; then model it as a pattern in the <strong>VIATRA</strong> modeling language. (CNL = natural language written in a fixed way.)</li>
+  <li><strong>Stored XSS example:</strong> a hacker (external entity) uploads a malicious script through process(es) into the server's data store; a normal user (another external entity) later gets it through some process. Pattern: external entity &rarr; process &rarr; <strong>data store</strong> &rarr; process &rarr; another external entity. The two entities must differ; the two processes may be the same; the <strong>data store must be shared</strong>. (Other path shapes also count as stored XSS.)</li>
+  <li><strong>Why VIATRA?</strong> SPARTA's DFD model is built on Eclipse <strong>Sirius</strong> and its threat patterns on Eclipse <strong>VIATRA</strong>. To add a new threat, define a new pattern in VIATRA in the pattern library &mdash; the lecturer says about a week of work in a research lab (set up Eclipse and the VIATRA packages).</li>
+  <li><strong>Net improvement:</strong> (1) threats are identified through patterns; (2) which solution mitigates which threat is shown in the DFD modeling space itself.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="risk">
+<h2>6. ③ Risk Assessment (Extended FAIR)</h2>
+<div class="card">
+<h3>Formula tree (memorize)</h3>
+<div class="keypoint">
+<span class="tag">Core formulas</span>
+<ul>
+  <li><code>Risk = LEF × LM</code> (Loss Event Frequency × Loss Magnitude)</li>
+  <li><code>LEF = TEF × V × RP</code> (Threat Event Frequency × Vulnerability × Retention Period)</li>
+  <li><code>TEF = PoA × CF</code> (Probability of Action × Contact Frequency)</li>
+  <li><code>V = Max(CD, CB)</code> (Countermeasure Defeated, Countermeasure Bypassed)</li>
+  <li><code>CD = f(TC, S)</code> where <code>f(x, y) = 1 if x ≥ y, else 0</code> (TC = Threat Capability, S = Strength)</li>
+  <li><code>LM = AV + PV</code> (Asset Value + Privacy Value)</li>
+  <li><code>PV = DTS × NR × DST × NDS</code></li>
+</ul>
+</div>
+
+<table>
+<tr><th>Term</th><th>Meaning</th></tr>
+<tr><td><strong>Risk</strong></td><td>Overall risk level</td></tr>
+<tr><td><strong>LEF</strong> — Loss Event Frequency</td><td>Rate at which a security incident or privacy violation occurs</td></tr>
+<tr><td><strong>TEF</strong> — Threat Event Frequency</td><td>Rate at which a threat is <em>attempted</em> (not whether it succeeds)</td></tr>
+<tr><td><strong>PoA</strong> — Probability of Action</td><td>Probability the actor performs the act (depends on reward, capability, opportunity given to them)</td></tr>
+<tr><td><strong>CF</strong> — Contact Frequency</td><td>How often the threat actor interacts with the system</td></tr>
+<tr><td><strong>V</strong> — Vulnerability</td><td>Probability that a security/privacy threat occurs</td></tr>
+<tr><td><strong>CD</strong> — Countermeasure Defeated</td><td>Probability the countermeasure is defeated; compares attacker capability (TC) against the strength (S) of the security/privacy function</td></tr>
+<tr><td><strong>CB</strong> — Countermeasure Bypassed</td><td>Whether a way exists to bypass the countermeasure (assessed similarly; the model links it to <em>Insider</em>)</td></tr>
+<tr><td><strong>RP</strong> — Retention Period</td><td>How long data is stored or processed</td></tr>
+<tr><td><strong>LM</strong> — Loss Magnitude</td><td>Impact of the security/privacy threat</td></tr>
+<tr><td><strong>AV</strong> — Asset Value</td><td>Loss/damage to the organization if the attack succeeds (can be expressed in money)</td></tr>
+<tr><td><strong>PV</strong> — Privacy Value</td><td>Impact on the data subjects</td></tr>
+<tr><td><strong>DTS</strong> — Data Type Sensitivity</td><td>Confidentiality level of the data</td></tr>
+<tr><td><strong>NR</strong> — Number of Records</td><td>Records processed/stored (same data in many records → high impact; only in a few → lower)</td></tr>
+<tr><td><strong>DST</strong> — Data Subject Type</td><td>Type of subject whose data is handled (e.g., <strong>children</strong> → higher risk)</td></tr>
+<tr><td><strong>NDS</strong> — Number of Data Subjects</td><td>How many data subjects</td></tr>
+</table>
+
+<h3>Other parameters</h3>
+<ul>
+  <li><strong>System Context:</strong> DFD elements affected by the threat, applied solutions, asset value, etc.</li>
+  <li><strong>Threat Type:</strong> which threat types remain</li>
+  <li><strong>Attacker Profile:</strong> extra info on attacker capability</li>
+  <li><strong>Data Subject Type</strong> and <strong>Data Type</strong></li>
+</ul>
+
+<h3>Monte Carlo simulation</h3>
+<ul>
+  <li>SPARTA runs risk assessment <strong>automatically with Monte Carlo simulation</strong> over the metrics above.</li>
+  <li><strong>Monte Carlo:</strong> repeatedly generate random values (random numbers) from a probability model, simulate with them, and find the <strong>probability distribution</strong> of the answer.</li>
+  <li>Each input (S, TC, CF, PoA, ...) is a distribution; they combine up the tree (e.g., V from P(TC &gt; S); TEF = CF × PoA; LEF = V × TEF; R = LEF × LM).</li>
+  <li>Output (slide screenshot): a ThreatAnalysis view listing each threat (e.g., Information Disclosure on the Database) with risk in money, annualized loss, mitigated vs. residual risk, under a chosen attacker model (e.g., "Motivated, capable, organized").</li>
+</ul>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; how much of the risk math you need</span>
+<span class="timestamp">Recording: SPARTA, ~48:28 and ~51:45&ndash;52:42</span>
+<ul>
+  <li>Risk analysis in SPARTA uses <strong>Monte Carlo simulation</strong> (statistical virtual simulation) to score how risky each threat is &mdash; the tool outputs numbers like 0.75, 0.71, 0.77. The lecturer deliberately <strong>cut the detailed risk-formula material from the lecture slides</strong> as not essential.</li>
+  <li><strong>Exam focus (lecturer's words):</strong> know what <em>manual</em> threat modeling looks like and exactly how SPARTA automated it &mdash; i.e., how it extended the existing approach. Everything else is detail.</li>
+  <li>Newer automation research is expanding to risk analysis and automatic <strong>attack tree generation</strong>; the lecturer's lab also published automotive threat-modeling automation work.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="summary">
+<h2>Quick Reference Summary</h2>
+<div class="card">
+<table>
+<tr><th>Concept</th><th>One-line takeaway</th></tr>
+<tr><td>Manual vs automated</td><td>Manual = costly, not reusable, inconsistent; automated = reusable results, traceability via catalogs, easy re-evaluation</td></tr>
+<tr><td>Why hard</td><td>When (early), What (no standard artifact), How (repeat across SDLC)</td></tr>
+<tr><td>MS-TMT limit</td><td>Can't express solutions/assumptions in detail; solutions biased toward encryption; DFD lacks solution info</td></tr>
+<tr><td>SPARTA stack</td><td>Sirius (DFD editor), VIATRA (threat elicitation), Extended FAIR (risk), all on EMF meta-model</td></tr>
+<tr><td>Extended DFD</td><td>Adds ThreatType, Solution, Role, RoleBinding, CounterMeasure → traceability threat ↔ solution</td></tr>
+<tr><td>Element-based identification problems</td><td>False negative, false positive, duplicates</td></tr>
+<tr><td>5 elicitation inputs</td><td>Information, Operation, Countermeasure, Attack, Action</td></tr>
+<tr><td>Risk</td><td>Risk = LEF × LM; LEF = TEF × V × RP; TEF = PoA × CF; V = Max(CD, CB); LM = AV + PV; PV = DTS × NR × DST × NDS</td></tr>
+<tr><td>Evaluation method</td><td>Monte Carlo simulation (random sampling → probability distribution of risk)</td></tr>
+</table>
+</div>
+</section>
+
+</main>
+
+<footer>
+  Compiled from the Week 5 "Automated Threat Modeling Tool (SPARTA)" lecture slides — for exam review use.
+</footer>
+
+</body>
+</html>

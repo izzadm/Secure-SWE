@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 4 — STRIDE & LINDDUN — Exam Notes</title>
+<style>
+  :root{
+    --maroon:#7a1f2b;
+    --tan:#c9b79c;
+    --ink:#242021;
+    --paper:#fdfbf8;
+    --card:#ffffff;
+    --note-bg:#fbf3e7;
+    --note-border:#d9a441;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Helvetica,Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+  }
+  header{
+    background:linear-gradient(120deg,var(--maroon),#5a151d);
+    color:#fff;
+    padding:2.5rem 2rem 2rem;
+  }
+  header h1{margin:0 0 .3rem;font-size:1.8rem;}
+  header p{margin:0;opacity:.9;font-size:.95rem;}
+  nav{
+    background:#efe6d8;
+    padding:.8rem 2rem;
+    position:sticky;
+    top:0;
+    z-index:10;
+    border-bottom:3px solid var(--maroon);
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  nav a{
+    color:var(--maroon);
+    text-decoration:none;
+    font-weight:600;
+    margin-right:1.1rem;
+    font-size:.87rem;
+  }
+  nav a:hover{text-decoration:underline;}
+  main{max-width:920px;margin:0 auto;padding:2rem;}
+  section{margin-bottom:2.8rem;}
+  h2{
+    color:var(--maroon);
+    border-bottom:3px solid var(--tan);
+    padding-bottom:.4rem;
+    font-size:1.4rem;
+  }
+  h3{color:#5a151d;font-size:1.12rem;margin-top:1.4rem;}
+  h4{color:#5a151d;font-size:1rem;margin-top:1rem;margin-bottom:.4rem;}
+  .card{
+    background:var(--card);
+    border:1px solid #e6ddcf;
+    border-radius:10px;
+    padding:1.2rem 1.4rem;
+    margin:1rem 0;
+    box-shadow:0 1px 3px rgba(0,0,0,.05);
+  }
+  ul{padding-left:1.3rem;}
+  li{margin-bottom:.35rem;}
+  ol{padding-left:1.3rem;}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;font-size:.9rem;}
+  th,td{border:1px solid #ddd0ba;padding:.5rem .65rem;text-align:left;vertical-align:top;}
+  th{background:var(--tan);color:#3a2c1a;}
+  tr:nth-child(even) td{background:#faf6ef;}
+  code{background:#f0ece3;padding:.1rem .35rem;border-radius:4px;font-size:.88rem;}
+
+  .keypoint{
+    background:var(--note-bg);
+    border-left:5px solid var(--note-border);
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .keypoint .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#8a5a10;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .keypoint .tag::before{content:"⭐ ";}
+  .example{
+    background:#eef6ee;
+    border-left:5px solid #4d8a5c;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .example .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2c6b3a;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .example .tag::before{content:"🧩 ";}
+  .warn{
+    background:#fbeaea;
+    border-left:5px solid #b5473f;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .warn .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#9c352d;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .warn .tag::before{content:"⚠ ";}
+  .term{font-weight:700;color:var(--maroon);}
+  .stage-badge{
+    display:inline-block;
+    background:var(--maroon);
+    color:#fff;
+    border-radius:20px;
+    padding:.15rem .8rem;
+    font-size:.8rem;
+    font-weight:700;
+    margin-right:.5rem;
+  }
+  footer{
+    text-align:center;
+    color:#8a7a5e;
+    font-size:.85rem;
+    padding:2rem 0;
+  }
+
+  .lecture{
+    background:#fbf3e7;
+    border-left:5px solid #d9a441;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .lecture .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#8a5a10;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+  }
+  .lecture .tag::before{content:"🎙 ";}
+  .qa{
+    background:#eef3f6;
+    border-left:5px solid #4d7ea8;
+    border-radius:6px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .qa .tag{
+    display:inline-block;
+    font-weight:700;
+    color:#2f5c80;
+    margin-bottom:.5rem;
+    font-size:.85rem;
+    text-transform:uppercase;
+  }
+  .qa .tag::before{content:"💬 ";}
+  .examtip{
+    background:#fff4d6;
+    border:2px solid #d9a441;
+    border-radius:8px;
+    padding:1rem 1.2rem;
+    margin:1rem 0;
+    font-size:.94rem;
+  }
+  .examtip .tag{
+    display:inline-block;
+    font-weight:800;
+    color:#7a1f2b;
+    margin-bottom:.5rem;
+    font-size:.88rem;
+    text-transform:uppercase;
+  }
+  .examtip .tag::before{content:"🎯 ";}
+  .timestamp{color:#8a7a5e;font-size:.8rem;font-style:italic;}
+</style>
+</head>
+<body>
+<p style="margin:0;padding:.5rem 2rem;background:#efe6d8;font-size:.85rem"><a href="index.html" style="color:#7a1f2b;text-decoration:none;font-weight:600">&larr; Back to Notes Hub</a></p>
+<header>
+  <h1>Secure Software Engineering I — Week 4</h1>
+  <p>Threat Modeling: STRIDE &amp; LINDDUN — Exam Notes</p>
+</header>
+
+<nav>
+  <a href="#intro">Threat Modeling</a>
+  <a href="#stride-flow">STRIDE Process</a>
+  <a href="#attack-library">Attack Library</a>
+  <a href="#enumeration">Threat Enumeration</a>
+  <a href="#example">Worked Example</a>
+  <a href="#attack-tree">Attack Tree</a>
+  <a href="#remediation">Remediation</a>
+  <a href="#dread">DREAD</a>
+  <a href="#linddun">LINDDUN</a>
+  <a href="#compare">STRIDE vs LINDDUN</a>
+</nav>
+
+<main>
+
+<div class="examtip">
+<span class="tag">What the lecturer said about the exam (Week 4 material)</span>
+<ul>
+  <li><strong>You do not need to memorize the Attack Library.</strong> The exam will give you an attack library; you are expected to identify threats from it and then write attack scenarios.</li>
+  <li>Be able to do each step: STRIDE-per-element threat identification &rarr; concretize with the library &rarr; attack tree (AND/OR). Same for LINDDUN.</li>
+  <li>Also be able to <em>count</em> to the STRIDE/LINDDUN categories once &mdash; the lecturer recommended reciting them before the exam.</li>
+</ul>
+<p style="font-size:.82rem;color:#8a7a5e;margin:.3rem 0 0">Gold boxes below marked &#127897; come from your lecture recordings; blue boxes &#128172; are class Q&amp;A.</p>
+</div>
+
+<section id="intro">
+<h2>1. What is Threat Modeling?</h2>
+<div class="card">
+<p>A methodology that uses a <strong>systematic procedure</strong> to identify <strong>known security threats</strong> that could occur in a product.</p>
+<table>
+<tr><th>Stage</th><th>Description (guiding question)</th></tr>
+<tr><td><strong>System modeling</strong></td><td>Abstract the target system by referring to data flow ("How does the system work?")</td></tr>
+<tr><td><strong>Known threat information gathering</strong></td><td>Collect known vulnerabilities/attacks related to the system ("What hacks happened to it in the past?")</td></tr>
+<tr><td><strong>Threat analysis</strong></td><td>Derive threats that can occur in each system component ("What threats are inherent?")</td></tr>
+<tr><td><strong>Attack scenario derivation</strong></td><td>Turn the threats into scenarios showing the order in which they could be exploited to compromise the system ("How does a hacker attack?")</td></tr>
+<tr><td><strong>Mitigation (countermeasure) planning</strong></td><td>Derive security measures to counter the attack scenarios ("How do we protect the system?")</td></tr>
+</table>
+
+<div class="example">
+<span class="tag">Real-world result — Microsoft</span>
+<p>Per-stage processes reduce vulnerabilities found <strong>after</strong> release, and removing vulnerabilities <strong>before</strong> release reduces cost. Chart on the slide: <strong>Windows XP (SDLC) = 119 → Windows Vista (SDL) = 66</strong>, a <strong>45% decrease</strong>.</p>
+</div>
+</div>
+</section>
+
+<section id="stride-flow">
+<h2>2. STRIDE Threat Modeling — Overview &amp; Process</h2>
+<div class="card">
+<ul>
+  <li>Proposed by Microsoft's <strong>Praerit Garg and Loren Kohnfelder</strong> to improve the security of Microsoft's own software.</li>
+</ul>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; where STRIDE came from</span>
+<span class="timestamp">Recording: STRIDE &amp; DFD, ~00:00&ndash;03:21</span>
+<ul>
+  <li>Same overall flow as the MS-SDL threat modeling from Week 3, but with the detailed steps (known-threat collection, attack scenario derivation) spelled out.</li>
+  <li>Proposed by Microsoft researchers around the late 1990s&ndash;early 2000s, built from Microsoft products' real vulnerabilities: causes and effects were <strong>grouped into categories</strong> (spoofing, tampering, repudiation, information disclosure ...).</li>
+  <li>Original goal: remove threats in Microsoft products <em>early</em> to cut development cost. Because Microsoft products (Windows, SQL Server) are everywhere, papers now call STRIDE a <strong>general-purpose</strong> method &mdash; the first one to try on general software.</li>
+  <li><strong>Limitation:</strong> domains where Windows/MS products can't be installed (military, vehicles) use other threat-modeling methods.</li>
+  <li>One-word purpose of the risk-analysis (DREAD) step: <strong>prioritization</strong>.</li>
+</ul>
+</div>
+<h3>Process (in order)</h3>
+<ol>
+  <li><strong>Diagramming</strong> — create the DFD</li>
+  <li><strong>Attack Library</strong> — collect known vulnerabilities</li>
+  <li><strong>Threat enumeration</strong> — identify threats per DFD element/interaction</li>
+  <li><strong>Attack Tree</strong> — turn threats into attack scenarios</li>
+  <li><strong>Remediation</strong> — choose countermeasures</li>
+  <li><strong>Risk analysis (DREAD)</strong> — prioritize which to mitigate first</li>
+</ol>
+
+<table>
+<tr><th>Step</th><th>Purpose</th><th>Key points</th></tr>
+<tr><td><strong>DFD</strong></td><td>Express data flow between processes during analysis/design; used for system modeling</td><td>4 elements (External Entity, Process, Data Store, Data Flow); splitting processes makes data flow per structure easy to follow</td></tr>
+<tr><td><strong>Attack Library</strong></td><td>Collect currently known vulnerabilities for the target to use in threat identification</td><td>Based on CVE, CWE, etc.; the more accurate/numerous the collected vulnerabilities, the more useful for identification</td></tr>
+<tr><td><strong>Threat enumeration</strong></td><td>Identify security threats in DFD components</td><td>STRIDE-per-element, STRIDE-per-interaction</td></tr>
+<tr><td><strong>Attack Tree</strong></td><td>Protect the system from various attacks</td><td>Shows, as a tree, how an attacker could achieve a specific attack</td></tr>
+<tr><td><strong>Remediation</strong></td><td>Derive mitigation for identified threats</td><td>Consider security functions that can block paths so attack scenarios are efficiently mitigated</td></tr>
+</table>
+
+<h3>Step ① — Create the DFD</h3>
+<table>
+<tr><th>Element</th><th>Definition</th><th>Example</th></tr>
+<tr><td><strong>External Entity</strong></td><td>Things outside your control</td><td>People, other systems, web sites</td></tr>
+<tr><td><strong>Process</strong></td><td>Code</td><td>Exes, assemblies, COM components</td></tr>
+<tr><td><strong>Data Flow</strong></td><td>How information flows between other elements</td><td>Function calls</td></tr>
+<tr><td><strong>Data Store</strong></td><td>Data at rest</td><td>Files, databases, registry keys</td></tr>
+</table>
+<ul>
+  <li>Also add a dotted-line <strong>Trust Boundary</strong>: marks the border between locations operating at different privilege levels.</li>
+  <li>Strip everything unrelated to the analysis target — keep only essential information.</li>
+</ul>
+<div class="keypoint">
+<span class="tag">Quality criteria for a DFD</span>
+<ul>
+  <li><strong>Completeness:</strong> every function of the real target must be included in the abstracted diagram.</li>
+  <li><strong>Soundness:</strong> the difference between the real target and the abstracted diagram must be small.</li>
+</ul>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; how to decide which DFD element something is</span>
+<span class="timestamp">Recording: STRIDE &amp; DFD, ~03:21&ndash;07:44</span>
+<ul>
+  <li><strong>External entity</strong> = everything <em>outside</em> the scope you are analyzing. Analyzing a PC &rarr; the user and any external server the PC talks to are external entities.</li>
+  <li><strong>Process</strong> = any program or piece of source code (an app, a running system library).</li>
+  <li><strong>Data flow</strong> = input parameters, return values, outputs &mdash; anything transmitted between elements (drawn as arrows).</li>
+  <li><strong>Data store</strong> = anywhere data is stored: memory, a database's storage, a USB/removable disk.</li>
+  <li><strong>Common confusion &mdash; databases:</strong> the managing software (the <em>DBMS</em>) is a <strong>process</strong>; the storage space it manages is the <strong>data store</strong>. A query goes to the process and a value is returned.</li>
+  <li><strong>Trust boundary</strong> = where the privilege required to send/receive data changes (classic example: user &rarr; login process). Draw it explicitly as a dotted line.</li>
+</ul>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; why the trust boundary matters</span>
+<span class="timestamp">Recording: STRIDE &amp; DFD, ~08:32&ndash;13:37</span>
+<ul>
+  <li>A DFD keeps only the data flow and deletes everything else. Threats can occur at every element (STRIDE-per-element), but <strong>real attacks concentrate where data crosses the trust boundary</strong> &mdash; the external interface is where cyberattacks start (SQL injection into a login process, brute-forcing ID/password, social engineering to impersonate a user).</li>
+  <li>So always draw those data flows and analyze their threats in more detail.</li>
+  <li><strong>Link to the MS-SDL "security assumptions" step:</strong> you may <em>assume</em> the area inside the trust boundary is safe (e.g., strictly runtime-monitored) and skip threats found there by STRIDE-per-element; or you may assume it is <em>not</em> safe, because threats inside can later be chained with external attacks. The boundary-crossing parts are analyzed either way.</li>
+</ul>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; Completeness vs Soundness, with examples</span>
+<span class="timestamp">Recording: STRIDE &amp; DFD, ~13:37&ndash;19:17</span>
+<ul>
+  <li><strong>Modeling = keep only the information you need and delete the rest</strong> (simplify a complex target). The danger: a gap between the real target and the model.</li>
+  <li><strong>Completeness broken:</strong> the real system has 6 functions but the model has only 4 processes (unless those 4 truly cover all 6). Likewise 5 real functions (A, B, C, D, E) but only 4 appear in the model.</li>
+  <li><strong>Soundness broken:</strong> all functions are present, but the <em>meaning</em> differs &mdash; e.g., really A calls B (or C or D), then E, then E calls A recursively, but the model draws A&rarr;B&rarr;E&rarr;A. Same functions, different call semantics.</li>
+  <li><strong>Soundness</strong> = the semantic difference between the real target and the abstracted model must be small. There's no single "correct" DFD; the goal is to draw it as accurately as possible.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="attack-library">
+<h2>3. Step ② — Build the Attack Library</h2>
+<div class="card">
+<p>Collect security threats/vulnerabilities that can occur in the target or similar products. <strong>Why:</strong> if you map threats using only STRIDE's identification rules, results can be <em>too abstract or unrealistic</em>. Sources: papers, standards, technical reports, vulnerability databases.</p>
+
+<table>
+<tr><th>Source</th><th>What it is</th></tr>
+<tr><td><strong>CVE</strong> (Common Vulnerabilities &amp; Exposures)</td><td>Vulnerability database listing known vulnerabilities in a standardized way</td></tr>
+<tr><td><strong>CWE</strong> (Common Weakness Enumeration)</td><td>Security-flaw database that classifies <em>weaknesses</em> (not just vulnerabilities), based on vulnerabilities in the CVE database</td></tr>
+<tr><td><strong>CAPEC</strong> (Common Attack Pattern Enumeration &amp; Classification)</td><td>Database of attack patterns that arise when a weakness is exploited; a pattern may include definition, prerequisites, likelihood, consequences, mitigations</td></tr>
+<tr><td><strong>MITRE ATT&amp;CK</strong></td><td>Database built from real cyberattack cases, analyzing hacker behavior in terms of <strong>Tactics</strong> and <strong>Techniques</strong></td></tr>
+</table>
+
+<div class="example">
+<span class="tag">Attack Library example (remote ID/Password authentication system)</span>
+<table>
+<tr><th>ID</th><th>Type</th><th>Source</th><th>Meaning</th></tr>
+<tr><td>AL-V-1</td><td>ATT&amp;CK</td><td>Password Policy Discovery (T1201)</td><td>Learn password policy (min length, weak patterns)</td></tr>
+<tr><td>AL-V-2</td><td>CVE</td><td>CVE-2023-27425</td><td>Stored XSS in login plugin → log in as admin</td></tr>
+<tr><td>AL-V-3</td><td>ATT&amp;CK</td><td>GUI Input Capture (T1056.002)</td><td>Fake GUI asks users for credentials</td></tr>
+<tr><td>AL-V-4</td><td>ATT&amp;CK</td><td>Default Accounts (T1078.001)</td><td>Admin keeps vendor default ID/PW</td></tr>
+<tr><td>AL-V-5</td><td>ATT&amp;CK</td><td>Phishing (T1598)</td><td>Impersonate an organization's staff by email/text to get secrets</td></tr>
+<tr><td>AL-V-6</td><td>ATT&amp;CK</td><td>Application Exhaustion Flood (T1499.003)</td><td>Huge number of service requests exhaust resources</td></tr>
+<tr><td>AL-V-7</td><td>ATT&amp;CK</td><td>Application or System Exploitation (T1499.004)</td><td>Forged/tampered data makes the system fail</td></tr>
+<tr><td>AL-W-1</td><td>CWE-123</td><td>—</td><td>Use of insecure functions</td></tr>
+<tr><td>AL-W-2</td><td>CWE-209</td><td>—</td><td>Error messages leak sensitive info (e.g., "wrong password")</td></tr>
+<tr><td>AL-W-3</td><td>CWE-294</td><td>—</td><td>Replay: attacker captures a packet and resends it</td></tr>
+<tr><td>AL-W-4</td><td>CWE-300</td><td>—</td><td>Man-in-the-middle (impersonates each side to the other)</td></tr>
+<tr><td>AL-W-5</td><td>CWE-311</td><td>—</td><td>Data sent/stored unencrypted</td></tr>
+<tr><td>AL-W-6</td><td>CWE-326</td><td>—</td><td>Encryption too weak, can be cracked</td></tr>
+<tr><td>AL-P-1/2/3</td><td colspan="3">Papers: mobile banking vulnerabilities (phishing, social engineering); replay attack on voice authentication; Bad-token DoS on WPA3</td></tr>
+</table>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; what each database really is</span>
+<span class="timestamp">Recording: Attack Library, ~00:00&ndash;11:44</span>
+<ul>
+  <li>Attack library info can come from papers, standards (annex-style lists of threats/vulnerabilities), vendor technical reports on product vulnerability analysis &mdash; but the <strong>most used source is the vulnerability databases</strong>.</li>
+  <li><strong>CVE</strong> = vulnerabilities found in <em>actual products</em> (like a bug-bounty report: described, often with PoC code and procedure). Each entry also carries <strong>CPE</strong> (Common Platform Enumeration, "product enumeration") &mdash; which product or product family is affected. <strong>For an attack library, CPE is the key field:</strong> use it to decide whether a collected vulnerability is related to <em>your</em> target.</li>
+  <li><strong>CWE</strong> = groups vulnerabilities into common but somewhat abstract <em>types</em> (weaknesses).</li>
+  <li><strong>CAPEC</strong> = attack techniques/procedures used to exploit a weakness (example: how to reach the kernel and set register values to escalate privilege without authorization).</li>
+  <li><strong>MITRE ATT&amp;CK</strong> = built from real attack cases. <strong>Tactics</strong> are the attacker's <em>goals</em> (the columns: reconnaissance, resource development, initial access, execution, persistence, privilege escalation ...); <strong>Techniques</strong> are the detailed <em>methods</em> to reach each goal (e.g., "Scanning" under reconnaissance to collect IPs and open ports).</li>
+  <li>In short: CVE = a specific product's flaw; CWE = flaw type; CAPEC = how the flaw is exploited; ATT&amp;CK = what an attacker is trying to achieve and how.</li>
+</ul>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; ATT&amp;CK also helps write attack scenarios</span>
+<span class="timestamp">Recording: Attack Library, ~07:32&ndash;10:55</span>
+<p>Tactics are ordered: achieving earlier goals (initial access, then execution ...) leads to the final goal (e.g., exfiltrating data). Because of this <strong>causal ordering</strong>, ATT&amp;CK is also used <em>after</em> threat identification to write attack scenarios. Active research links ATT&amp;CK (abstract goals/techniques) &rarr; CAPEC/CWE (weaknesses) &rarr; CVE (concrete flaws) to produce scenarios at CVE level. <strong>For this course, just remember ATT&amp;CK is one vulnerability database you can use for STRIDE-per-element.</strong></p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; why build an attack library at all?</span>
+<span class="timestamp">Recording: Attack Library, ~12:41 and ~27:17&ndash;29:46</span>
+<ul>
+  <li>STRIDE-per-element threats are <strong>abstract</strong>. If threats aren't concrete, the attack tree is abstract too, and you may end up planning mitigations for threats that <em>can't happen in your product</em> or that can't be properly applied. Concrete identification &rarr; accurate scenarios &rarr; accurate countermeasures.</li>
+  <li><strong>"Why not just search the CVE site when needed?"</strong> The key is collecting vulnerabilities <em>related to your product</em> &mdash; unrelated ones are meaningless.</li>
+  <li><strong>It's not a one-time step.</strong> Building the library is time-consuming and vulnerabilities are constantly added/updated, so you keep updating it throughout the whole threat-modeling process (that's why it isn't "done" once at step 2).</li>
+  <li>CVE website practice: search by product/category (e.g., "infotainment") to get related vulnerabilities, descriptions, references (with more detail and PoC).</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="enumeration">
+<h2>4. Step ③ — Threat Enumeration</h2>
+<div class="card">
+<p>In the past: brainstorming/informal approaches. Today, two methods:</p>
+<table>
+<tr><th></th><th>STRIDE-per-element</th><th>STRIDE-per-interaction</th></tr>
+<tr><td><strong>Idea</strong></td><td>Identify threats by the <em>type</em> of each individual DFD element</td><td>Identify threats in the data exchange between <em>two</em> DFD elements</td></tr>
+<tr><td><strong>Pros</strong></td><td>Less time; simple analysis</td><td>Finds threats in data transmission/processing from interactions</td></tr>
+<tr><td><strong>Cons</strong></td><td>Hard to fully capture threats that arise from interactions between components</td><td>Time-consuming; complex (must analyze every interaction)</td></tr>
+</table>
+
+<div class="keypoint">
+<span class="tag">STRIDE-per-element table (memorize)</span>
+<table>
+<tr><th>Element</th><th>S</th><th>T</th><th>R</th><th>I</th><th>D</th><th>E</th></tr>
+<tr><td><strong>External Entity</strong></td><td>●</td><td></td><td>●</td><td></td><td></td><td></td></tr>
+<tr><td><strong>Process</strong></td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td></tr>
+<tr><td><strong>Data Store</strong></td><td></td><td>●</td><td>△</td><td>●</td><td>●</td><td></td></tr>
+<tr><td><strong>Data Flow</strong></td><td></td><td>●</td><td></td><td>●</td><td>●</td><td></td></tr>
+</table>
+<p>S = Spoofing, T = Tampering, R = Repudiation, I = Information disclosure, D = Denial of service, E = Elevation of privilege. △ = only in some cases (e.g., a data store that holds log data).</p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; per-element vs per-interaction, in practice</span>
+<span class="timestamp">Recording: Attack Library, ~13:43&ndash;20:39</span>
+<ul>
+  <li><strong>Per-element:</strong> one element type &rarr; fixed list of threats. Counts per element: <strong>external entity 2, process 6, data store 3 (4 with the &#9651;), data flow 3.</strong> Multiply by how many of each element are in your DFD to get the theoretical threat count. Simple and fast, but the results are <em>abstract</em>.</li>
+  <li><strong>Per-interaction:</strong> look at data exchanged between two elements and <strong>brainstorm</strong> the threats there &mdash; more concrete, but it depends on the analyst's knowledge, takes longer, and is more complex.</li>
+  <li><strong>Bluetooth example:</strong> per-element gives "attacker pretends to be a legitimate user while Process A communicates." Per-interaction (with Bluetooth knowledge) finds Bluetooth-specific issues, e.g., spoofing the <em>beacon</em> signals that a device sends to find devices to connect to. Per-element can't see "Bluetooth" at all &mdash; it only looks at the table. <strong>The attack library fixes this:</strong> map the abstract threat onto real vulnerabilities for that technology.</li>
+  <li><strong>MS-TMT</strong> (the tool you'll practice with) identifies threats with STRIDE-per-interaction: the analysts' product-vulnerability knowledge was turned into <em>patterns</em> the tool applies automatically, so it feels as easy as per-element even though it is per-interaction underneath.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="example">
+<h2>5. Worked Example — ID/Password Authentication System</h2>
+<div class="card">
+<p><strong>Target:</strong> a remote ID/Password-based authentication system for customers accessing a system. DFD elements named in the slides: <code>E1</code> Clients, <code>P1</code> Log-in, <code>D1</code> Account Database, <code>DF7</code> Client ID/Password &amp; personal information.</p>
+<h3>Procedure</h3>
+<ol>
+  <li><strong>Build the Attack Library</strong> (previous section).</li>
+  <li><strong>List abstract threats</strong> per DFD element using the STRIDE-per-element table. Example: for external entity <em>Client</em> → Spoofing ("attacker pretends to be a legitimate customer") and Repudiation ("attacker denies having accessed the system").</li>
+  <li><strong>Make the abstract threats concrete</strong> with Attack Library entries. Example: Spoofing of the client becomes — replay attack to impersonate (AL-V-3, AL-W-3, AL-P-2); phishing-collected ID/PW (AL-V-5); vendor default account to pose as admin (AL-V-4).</li>
+  <li><strong>Threats with no supporting library entry</strong> — the slides show these being removed (e.g., Repudiation above is dropped in the example). <em>But see the lecturer&#39;s nuance in the box below: absence of a known vulnerability does not prove the threat is impossible.</em></li>
+  <li><strong>Final threat table</strong> with columns: location (DFD element), threat type, description, attack library refs, threat number (T1, T2 ...). The slides list T1–T18.</li>
+</ol>
+<div class="example">
+<span class="tag">Sample rows from the slides</span>
+<ul>
+  <li><strong>T5</strong> (P1 Log-in, Tampering): XSS vulnerability lets attacker log in as admin → AL-V-2</li>
+  <li><strong>T6</strong> (P1, Info disclosure): weak password rules + info in error messages → guess ID/PW → AL-V-1, AL-W-2, AL-P-1</li>
+  <li><strong>T7/T8</strong> (P1, Info disclosure): monitor unencrypted traffic / break weak encryption → AL-W-5, AL-W-6</li>
+  <li><strong>T9</strong> (P1, DoS): mass packet attack → AL-V-6</li>
+  <li><strong>T10</strong> (P1, DoS): no/faulty exception handling, tampered data puts system out of control → AL-V-7, AL-P-3</li>
+  <li><strong>T11</strong> (P1, Elevation of privilege): abuse vulnerable functions like <code>strcpy</code>, <code>strcmp</code> to get root → AL-W-1</li>
+  <li><strong>T12/T13</strong> (D1 Account DB, Info disclosure): unencrypted storage / weak encryption → AL-W-5, AL-W-6</li>
+  <li><strong>T14</strong> (D1, DoS): Ping of Death, SYN flooding → AL-V-6</li>
+  <li><strong>T16</strong> (DF7, Info disclosure): man-in-the-middle captures account and personal info → AL-W-3</li>
+</ul>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; turning an abstract threat into a concrete one ("add the how")</span>
+<span class="timestamp">Recording: Attack Library, ~20:39&ndash;25:30</span>
+<p>The abstract threat "attacker spoofs a legitimate client" has no <em>how</em>. The attack library adds it: <strong>replay attack</strong> (AL-W-3: capture the user's packet and resend it), <strong>phishing</strong> (AL-V-5), <strong>default account</strong> (AL-V-4). Concretizing answers <em>how</em> the spoof/entry happens and <em>what result</em> it causes.</p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; filtering library entries by what your product actually is</span>
+<span class="timestamp">Recording: Attack Library, ~24:55&ndash;27:17</span>
+<p>The three "replay"-like entries are not the same: <strong>AL-V-3</strong> = fake GUI that captures input; <strong>AL-W-3</strong> = capture and resend an ID/password packet; <strong>AL-P-2</strong> = record a voice and resend it. If your target logs in with a typed ID/password, voice login, or a CAPTCHA/GUI, you can <strong>filter</strong> which entries apply. In the slide example nothing was filtered because the target was described only abstractly ("ID/password authentication") &mdash; if the description said "login by voice," you'd keep AL-P-2 and drop AL-V-3 and AL-W-3. <strong>What you can use from the library depends on what exactly you are modeling.</strong></p>
+</div>
+
+<div class="qa">
+<span class="tag">Class Q&amp;A &mdash; no library match: exclude the threat?</span>
+<span class="timestamp">Recording: Attack Library, ~28:52&ndash;32:10</span>
+<p><em>Question to the class: if a STRIDE-per-element threat has no matching vulnerability in your attack library, do you just exclude it?</em></p>
+<p><strong>Answer:</strong> You can't conclude it is impossible. A zero-day may exist, or the vulnerability may exist and simply be unknown &mdash; cases where no one can know. Even a well-maintained library showing no mapping only means it's not exploitable with <em>currently known</em> resources/methods (e.g., future AI with huge compute could change that). So treat it as a <strong>potential security threat</strong>: keep it in mind and carry it into attack scenario / attack tree work as needed, rather than discarding it.</p>
+<p style="font-size:.85rem;color:#5a4f43"><em>Note: this is a nuance compared with the slide example, which simply removes such threats. If a question asks, the safe answer is "treated as a potential threat; not proof it can't occur."</em></p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; the threat count can go up after concretizing</span>
+<span class="timestamp">Recording: Attack Library, ~33:15&ndash;37:29</span>
+<ul>
+  <li>Example <strong>DF7 (client ID/password &amp; personal info)</strong> has two different information-disclosure threats: (1) guessing from weak password rules / error messages, (2) man-in-the-middle capture. Different exploitation methods = <strong>separate threats</strong>, even though the STRIDE category is the same.</li>
+  <li>Theoretical per-element total in the example: 18 + 27 + &hellip; = <strong>47</strong> threats. After applying the attack library, the count can <strong>rise</strong> (e.g., 50, 60 ...) because one threat may split into several concrete ones. That is normal, not an error. Concretizing can also decrease the number.</li>
+  <li>Writing the attack scenarios from these threats is largely <strong>qualitative/manual</strong>; research is trying to automate it (e.g., via ATT&amp;CK ordering).</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="attack-tree">
+<h2>6. Step ④ — Attack Tree</h2>
+<div class="card">
+<p>A tree-shaped diagram of attacks on a system; lets you derive <strong>attack scenarios</strong> from the identified threats.</p>
+<ul>
+  <li>The single <strong>root node</strong> (top) = the attacker's <strong>final goal</strong>.</li>
+  <li><strong>Leaf nodes</strong> = the sub-methods (i.e., threats) needed to reach the goal.</li>
+  <li>Build by decomposing the goal repeatedly.</li>
+  <li>Use <strong>AND</strong> and <strong>OR</strong> nodes as the conditions to reach the parent goal.</li>
+</ul>
+<div class="example">
+<span class="tag">Slide example (weapon system)</span>
+<p>Root: <em>Combat cannot be performed</em> ← (OR) <em>Weapon-control function paralyzed</em> / <em>Command function paralyzed</em> ← each via <em>related data tampering</em> ← <em>man-in-the-middle</em> ← leaves: <em>impersonating the linked system</em> and <em>unencrypted data</em>.</p>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; how to draw it: top-down, bottom-up, AND/OR notation</span>
+<span class="timestamp">Recording: Attack Library, ~37:29&ndash;44:22</span>
+<ul>
+  <li>You can build the tree <strong>top-down</strong> (start from the goal and decompose) or <strong>bottom-up</strong> (start from known threats and ask what they lead to). Either is fine.</li>
+  <li><strong>Parent node = the goal; child nodes = the conditions or methods to achieve it.</strong> Root = attacker's final goal; leaf = detailed method.</li>
+  <li><strong>Worked example (ID/password system):</strong> goal "steal personal info" needs the ID <em>and</em> the password at the same time &rarr; <strong>AND</strong>. To get the ID, you may sniff/capture packets and crack them <em>or</em> use social engineering (either one is enough) &rarr; <strong>OR</strong>. Same for the password.</li>
+  <li><strong>Notation:</strong> AND = an arc across the edges, or a straight line joining the edges. OR = <strong>no mark at all</strong> (any one child satisfies the parent).</li>
+  <li><strong>Sequential AND</strong> (seen in some papers): an AND with an arrow showing order &mdash; condition 1 must be satisfied first, then condition 2. <em>For this course, only AND and OR are needed.</em></li>
+  <li>Other attack paths for the ID/password example include phishing and <strong>brute force</strong> (exhaustive/dictionary attack &mdash; the same idea as in cryptography courses).</li>
+</ul>
+</div>
+
+<div class="lecture">
+<span class="tag">Lecture insight &mdash; no single right answer; how the lecturer does it in research</span>
+<span class="timestamp">Recording: Attack Library, ~45:03&ndash;50:39</span>
+<ul>
+  <li>No fixed method for writing attack scenarios. The lecturer's research approach: <strong>traverse the DFD as a graph</strong> from an entry node to the node holding the asset (e.g., the DB with IDs/passwords), focusing on data flows that cross the trust boundary; apply STRIDE-per-element to the elements along each path to auto-list threats; then concretize with the library and add ordering/pattern analysis to derive scenarios automatically.</li>
+  <li>An attack tree is itself a <strong>model</strong> (like the DFD) &mdash; so the same rule applies: there's no "correct" tree, aim to be as accurate as possible (completeness and soundness).</li>
+  <li><strong>Number of attack trees</strong> = number of distinct final attacker goals: could be 1, 2, 10, or 2,000.</li>
+  <li><strong>Real-world takeaway:</strong> to write good scenarios, concretize threats well and collect as many relevant attack-library entries as you can.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="remediation">
+<h2>7. Step ⑤ — Remediation (Countermeasure)</h2>
+<div class="card">
+<p>Choose security functions that block the path so each attack scenario is mitigated efficiently.</p>
+<div class="keypoint">
+<span class="tag">AND vs OR — very likely exam question</span>
+<ul>
+  <li><strong>AND node:</strong> blocking <strong>just one</strong> child node neutralizes that whole path.</li>
+  <li><strong>OR node:</strong> you must block <strong>all</strong> child nodes to neutralize the path.</li>
+</ul>
+</div>
+<p><strong>Which child to block?</strong> Compare the cost of implementing the security function for each child node, and whether your organization can <strong>reuse</strong> functions it already has.</p>
+<div class="example">
+<span class="tag">Slide example — security requirements</span>
+<ul>
+  <li><strong>Transmitted data confidentiality:</strong> the weapon system must protect sent/received user data from unauthorized leakage.</li>
+  <li><strong>Secure channel:</strong> logically separated from other channels, guarantees end-to-end identity, and prevents tampering and leakage.</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section id="dread">
+<h2>8. Step ⑥ — Risk Analysis: DREAD</h2>
+<div class="card">
+<p>Microsoft's five criteria for <strong>quantitatively</strong> rating the risk of attack scenarios → used to set <strong>mitigation priority</strong>. Each threat is scored on five aspects (the slide says 1–10 per aspect, with anchors at 0, 5, 9/10).</p>
+<table>
+<tr><th>Factor</th><th>Question</th><th>0</th><th>5</th><th>10</th></tr>
+<tr><td><strong>D</strong>amage potential</td><td>How far does damage spread?</td><td>No spread</td><td>Personal user data affected</td><td>System/data fully destroyed</td></tr>
+<tr><td><strong>R</strong>eproducibility</td><td>How often/easily can it be attempted?</td><td>Very hard/impossible; admin-level rights needed</td><td>1–2 steps; specific user-level privilege</td><td>Only a web browser; no privilege</td></tr>
+<tr><td><strong>E</strong>xploitability</td><td>How much effort is needed?</td><td>Advanced programming/network knowledge</td><td>Understand/use publicly available info</td><td>Basic browser features suffice</td></tr>
+<tr><td><strong>A</strong>ffected users</td><td>How many users hit by the same attack?</td><td>Single user or none</td><td>Some (not all) users</td><td>All users</td></tr>
+<tr><td><strong>D</strong>iscoverability</td><td>How likely is the flaw to be found?</td><td>Very hard; needs source code / admin-only screen</td><td>Guessing or network sniffing</td><td>9 = listed on a public index such as Shodan; 10 = easily found with only a browser</td></tr>
+</table>
+<ul>
+  <li>Apply mitigations in order of the <strong>sum or average</strong> of the five scores, highest first.</li>
+  <li>DREAD is not the only scheme — organizations may define their own scoring criteria to fit their systems.</li>
+</ul>
+</div>
+</section>
+
+<section id="linddun">
+<h2>9. LINDDUN Threat Modeling (Privacy)</h2>
+<div class="card">
+<p>Proposed by researchers at <strong>KU Leuven</strong>; the goal is to identify <strong>privacy-related threats</strong> (STRIDE is security-focused).</p>
+
+<h3>Background: privacy</h3>
+<ul>
+  <li><strong>Definition:</strong> the right to control, edit, manage, and delete information about yourself, and to decide when, how, and to what extent it is passed on to others.</li>
+</ul>
+<table>
+<tr><th>Type</th><th>Goal / assumption</th><th>Properties</th></tr>
+<tr><td><strong>Hard privacy</strong></td><td>Assumes third parties are <strong>not trusted</strong> → minimize privacy information (<em>data minimization</em>)</td><td>Unlinkability, Anonymity, Pseudonymity, Plausible deniability, Undetectability, Unobservability (+ Confidentiality)</td></tr>
+<tr><td><strong>Soft privacy</strong></td><td>Assumes the data holder is <strong>honest</strong> → process data per purpose and consent</td><td>Content awareness, Policy &amp; consent compliance</td></tr>
+</table>
+
+<h3>Privacy properties</h3>
+<table>
+<tr><th>Property</th><th>Meaning</th></tr>
+<tr><td><strong>Unlinkability</strong></td><td>Attacker cannot tell that two or more items of interest (subjects, messages, actions…) are linked</td></tr>
+<tr><td><strong>Anonymity</strong></td><td>Attacker cannot sufficiently identify a specific person among multiple subjects from the info available</td></tr>
+<tr><td><strong>Pseudonymity</strong></td><td>Hides identity by using an identifier other than the subject's real name</td></tr>
+<tr><td><strong>Undetectability</strong></td><td>Attacker cannot sufficiently tell whether an item of interest (IOI) exists; protects the IOI <em>directly</em> (anonymity/unlinkability protect it indirectly by hiding relationships)</td></tr>
+<tr><td><strong>Unobservability</strong></td><td>Undetectability + anonymity combined: cannot tell what the IOI is or who is related to it</td></tr>
+<tr><td><strong>Plausible deniability</strong></td><td>Can deny having done something that others cannot confirm or refute; attacker cannot prove a user knew/did/said something</td></tr>
+<tr><td><strong>Content awareness</strong></td><td>User is aware of how their personal info is being used</td></tr>
+<tr><td><strong>Policy &amp; consent compliance</strong></td><td>The system complies with (data protection) law, policy, and user consent</td></tr>
+</table>
+
+<div class="keypoint">
+<span class="tag">LINDDUN = 7 privacy threat types (each violates a property)</span>
+<table>
+<tr><th>Letter</th><th>Threat</th><th>Meaning</th><th>Violated property</th></tr>
+<tr><td><strong>L</strong></td><td>Linkability</td><td>Can establish a relationship between two different items of interest</td><td>Unlinkability</td></tr>
+<tr><td><strong>I</strong></td><td>Identifiability</td><td>Can directly identify the subject from some info</td><td>Anonymity / Pseudonymity</td></tr>
+<tr><td><strong>N</strong></td><td>Non-repudiation</td><td>Evidence of every action is collected/stored, so the subject cannot deny having done it</td><td>Plausible deniability</td></tr>
+<tr><td><strong>D</strong></td><td>Detectability</td><td>An item of interest can be identified (its existence detected)</td><td>Undetectability / Unobservability</td></tr>
+<tr><td><strong>D</strong></td><td>information Disclosure</td><td>Info exposed to unauthorized parties</td><td>Confidentiality</td></tr>
+<tr><td><strong>U</strong></td><td>content Unawareness</td><td>User cannot tell how their information is used</td><td>Content awareness</td></tr>
+<tr><td><strong>N</strong></td><td>policy &amp; consent Non-compliance</td><td>System does not follow law, policy, or user consent</td><td>Policy &amp; consent compliance</td></tr>
+</table>
+</div>
+
+<div class="warn">
+<span class="tag">Watch out</span>
+<p>In STRIDE, Repudiation is a <em>threat</em> (attacker denies actions). In LINDDUN, <strong>Non-repudiation is the threat</strong> — being unable to deny an action harms privacy. Don't mix these up.</p>
+</div>
+
+<h3>LINDDUN process</h3>
+<ol>
+  <li><strong>Create the DFD</strong> — same as STRIDE.</li>
+  <li><strong>Threat enumeration</strong> — two sub-steps (below).</li>
+  <li><strong>Misuse case</strong> — write abuse scenarios.</li>
+  <li><strong>Risk assessment</strong> — decide what to mitigate first (DREAD, SEI's OCTAVE).</li>
+  <li><strong>Remediation</strong> — choose countermeasures.</li>
+</ol>
+
+<h4>Step ② Threat enumeration</h4>
+<ol>
+  <li><strong>Identify privacy threats per DFD element</strong>, like STRIDE-per-element, then <strong>filter</strong> threats using assumptions and the system's operating environment.</li>
+  <li><strong>Make threats concrete with the threat trees</strong> — a collection of privacy-threat info built by the LINDDUN authors containing: causes of privacy violation, examples, criteria, impact, and additional info.</li>
+</ol>
+
+<table>
+<tr><th>Element</th><th>L</th><th>I</th><th>N</th><th>D</th><th>D</th><th>U</th><th>N</th></tr>
+<tr><td><strong>External Entity</strong></td><td>●</td><td>●</td><td></td><td></td><td></td><td>●</td><td></td></tr>
+<tr><td><strong>Process</strong></td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td></td><td>●</td></tr>
+<tr><td><strong>Data Flow</strong></td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td></td><td>●</td></tr>
+<tr><td><strong>Data Store</strong></td><td>●</td><td>●</td><td>●</td><td>●</td><td>●</td><td></td><td>●</td></tr>
+</table>
+<p><em>(Column order: Linkability, Identifiability, Non-repudiation, Detectability, information Disclosure, content Unawareness, policy Non-compliance.)</em></p>
+
+<div class="example">
+<span class="tag">Slide example — "SNS 2.0 app" (social network)</span>
+<ul>
+  <li>DFD elements: external entity <em>User</em>; processes <em>Portal</em>, <em>Service</em>; data flows <em>User-Portal</em>, <em>Portal-Service</em>, <em>Service-DB</em>; data store <em>Social network DB</em>.</li>
+  <li><strong>Filtering:</strong> <em>Portal-Service</em> and <em>Service-DB</em> are data flows <strong>inside the trust boundary</strong> and need no special high privileges → judged safe, so most of their threats are dropped.</li>
+  <li><strong>Threat tree refinement (Linkability of entity):</strong> <em>Before</em> — login/access history links SNS activity to a user's personal info. <em>After</em> — time and location shown in SNS activity can be linked to the user's nationality, residence, etc.</li>
+</ul>
+</div>
+
+<h4>Step ③ Misuse case</h4>
+<p>Turn each refined threat into a scenario showing how privacy could be violated. A misuse case must include <strong>7 items</strong>:</p>
+<ol>
+  <li><strong>Summary</strong> — brief description of the threat</li>
+  <li><strong>Assets, stakeholders and threats</strong> — what/who is threatened</li>
+  <li><strong>Primary misactor</strong> — attacker type</li>
+  <li><strong>Basic flow</strong> — basic scenario for the attack to succeed</li>
+  <li><strong>Alternative flows</strong> — other ways the attack can succeed</li>
+  <li><strong>Trigger</strong> — how and when the attack happens</li>
+  <li><strong>Preconditions</strong> — conditions that must hold for the attack to succeed</li>
+</ol>
+
+<h4>Step ④ Risk assessment &amp; ⑤ Remediation</h4>
+<ul>
+  <li>Risk assessment decides <em>what to mitigate first</em>; methods: <strong>DREAD</strong>, <strong>SEI's OCTAVE</strong>.</li>
+</ul>
+<table>
+<tr><th>2011 version — Privacy-Enhancing Techniques (3 types)</th><th>2023 version (4 types)</th></tr>
+<tr><td>Warn the user</td><td><strong>Risk mitigation</strong> — lower the threat's risk level through various measures</td></tr>
+<tr><td>Remove the feature that causes the threat</td><td><strong>Risk transfer</strong> — shift responsibility to another organization (e.g., an insurer)</td></tr>
+<tr><td>Mitigate the threat with technical measures</td><td><strong>Risk acceptance</strong> — risk is low enough to accept</td></tr>
+<tr><td>—</td><td><strong>Risk elimination</strong> — remove the system feature that could cause the threat, eliminating the risk itself</td></tr>
+</table>
+</div>
+</section>
+
+<section id="compare">
+<h2>10. STRIDE vs LINDDUN — Quick Comparison</h2>
+<div class="card">
+<table>
+<tr><th></th><th>STRIDE</th><th>LINDDUN</th></tr>
+<tr><td><strong>Origin</strong></td><td>Microsoft (Garg &amp; Kohnfelder)</td><td>KU Leuven</td></tr>
+<tr><td><strong>Focus</strong></td><td>Security threats</td><td>Privacy threats</td></tr>
+<tr><td><strong>Threat categories</strong></td><td>6: Spoofing, Tampering, Repudiation, Information disclosure, DoS, Elevation of privilege</td><td>7: Linkability, Identifiability, Non-repudiation, Detectability, information Disclosure, content Unawareness, policy Non-compliance</td></tr>
+<tr><td><strong>Input</strong></td><td>DFD</td><td>DFD (same)</td></tr>
+<tr><td><strong>Threat identification</strong></td><td>STRIDE-per-element / per-interaction + Attack Library (CVE, CWE, CAPEC, ATT&amp;CK)</td><td>Per-element mapping table + <strong>threat trees</strong></td></tr>
+<tr><td><strong>Scenario form</strong></td><td>Attack tree (AND/OR)</td><td>Misuse case (7 fields)</td></tr>
+<tr><td><strong>Risk analysis</strong></td><td>DREAD</td><td>DREAD or OCTAVE</td></tr>
+<tr><td><strong>Mitigation</strong></td><td>Block tree paths (AND: one child; OR: all children), weigh cost/reuse</td><td>PET: 2011 three types / 2023 four types (mitigate, transfer, accept, eliminate)</td></tr>
+</table>
+</div>
+</section>
+
+</main>
+
+<footer>
+  Compiled from the Week 4 "STRIDE &amp; LINDDUN" lecture slides — for exam review use.
+</footer>
+
+</body>
+</html>
